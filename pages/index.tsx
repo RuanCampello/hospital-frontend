@@ -4,6 +4,7 @@ import Header from "./components/header";
 import HomeView from "./components/views/homeView";
 import AddHospitalView from "./components/views/addHospitalView";
 import DelHospitalView from "./components/views/delHospitalView";
+import ViewHospital from "./components/views/viewHospitals";
 
 export default function Home() {
   const [viewS, setViewState] = useRecoilState(viewState)
@@ -14,6 +15,7 @@ export default function Home() {
           {viewS === 'home' && <HomeView/>}
           {viewS === 'addHospitalView' && <AddHospitalView/>}
           {viewS === 'delHospitalView' && <DelHospitalView/>}
+          {viewS === 'getHospitalView' && <ViewHospital/>}
         </div>
       </main>
   )

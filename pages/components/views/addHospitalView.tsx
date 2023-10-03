@@ -10,6 +10,7 @@ export default function AddHospitalView() {
   const [status, setStatus] = useState(Number)
   const [open, setOpen] = useState(false)
   const [dataErrors, setDataErrors] = useState(null)
+  const [respo, setRespo] = useState(null)
   
   async function addHospital() {
     const response = await fetch(`http://localhost:8080/hospital/`, {
@@ -29,6 +30,7 @@ export default function AddHospitalView() {
     if(data!['errors'] !== undefined && data){
       setDataErrors(data!['errors'][0]['defaultMessage'])
     }
+    if(data) setRespo(data)
   }
   function handleSubmit(e:any) {
     e.preventDefault()
@@ -48,7 +50,7 @@ export default function AddHospitalView() {
         </div>
         <button className='bg-teal-600 text-md font-semibold px-6 p-3 hover:bg-teal-700 float-right rounded-full' type='submit'>Submit</button>
       </form>
-        {dataErrors ?
+        {respo ?
             <Collapse in={open}>
             <Alert color={status === 201 ? 'success' : 'error'} severity={status === 201 ? 'success' : 'error'} variant='filled' action={
               <IconButton aria-label='close' color='inherit' onClick={()=> {setOpen(false)}}>
