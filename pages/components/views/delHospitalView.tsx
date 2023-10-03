@@ -3,7 +3,7 @@ import FormField from "../formField";
 import { Collapse, Alert, IconButton, AlertTitle } from "@mui/material";
 import { XCircle } from "@phosphor-icons/react";
 
-export default function delHospitalView() {
+export default function DelHospitalView() {
   const [id, setId] = useState(null)
   const [open, setOpen] = useState(false)
   const [status, setStatus] = useState(Number)
