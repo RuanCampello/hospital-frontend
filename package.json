@@ -14,7 +14,7 @@
     "@headlessui/react": "^1.7.17",
     "@mui/material": "^5.14.11",
     "@phosphor-icons/react": "^2.0.13",
-    "next": "latest",
+    "next": "^13.5.4",
     "react": "latest",
     "react-dom": "latest",
     "recoil": "^0.7.7"
