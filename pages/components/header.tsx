@@ -3,13 +3,12 @@ import { ArrowClockwise, Eye, FirstAid, PlusCircle, TrashSimple } from "@phospho
 import { useRecoilState } from "recoil"
 import { Menu, Transition } from "@headlessui/react"
 import { Fragment } from "react"
-import ButtonComponent from "./buttonComponent"
 
 export default function Header() {
   const [viewS, setViewState] = useRecoilState(viewState)
   return (
     <div className='bg-slate-700 text-slate-100 text-lg px-12 py-3 flex justify-between items-center'>
-      <button onClick={()=> setViewState('home')} className=''>
+      <button onClick={()=> setViewState('home')}>
         <FirstAid size={32} weight={'duotone'}/>
       </button>
       <Menu as="div" className="relative inline-block text-left">
@@ -35,16 +34,11 @@ export default function Header() {
                     className={`${
                       active ? 'bg-teal-500' : 'text-slate-200'
                     } group flex w-full items-center rounded-md p-2 gap-2`}
-                    onClick={() => setViewState('getHospitalView')}
-                  >
+                    onClick={() => setViewState('getHospitalView')}>
                     {active ? (
-                      <Eye size={28} weight="fill" />
-                    ) : (
-                      <Eye size={28} weight="duotone" />
-                    )}
-                    View Hospitals
-                  </button>
-                )}
+                      <Eye size={28} weight="fill" />) : (
+                      <Eye size={28} weight="duotone" />)}
+                    View Hospitals</button>)}
               </Menu.Item>
               <Menu.Item>
                 {({ active }) => (
@@ -52,13 +46,10 @@ export default function Header() {
                     className={`${
                       active ? 'bg-teal-500' : 'text-slate-200'
                     } group flex w-full items-center rounded-md p-2 gap-2`}
-                    onClick={() => setViewState('addHospitalView')}
-                  >
+                    onClick={() => setViewState('addHospitalView')}>
                     {active ? (
-                      <PlusCircle size={28} weight="fill"/>
-                    ) : (
-                      <PlusCircle size={28} weight="duotone"/>
-                    )}
+                      <PlusCircle size={28} weight="fill"/>) : (
+                      <PlusCircle size={28} weight="duotone"/>)}
                     Add Hospital
                   </button>
                 )}
@@ -69,13 +60,10 @@ export default function Header() {
                     className={`${
                       active ? 'bg-teal-500' : 'text-slate-200'
                     } group flex w-full items-center rounded-md p-2 gap-2`}
-                    onClick={() => setViewState('putHospitalView')}
-                  >
+                    onClick={() => setViewState('putHospitalView')}>
                     {active ? (
-                      <ArrowClockwise size={28} weight="fill"/>
-                    ) : (
-                      <ArrowClockwise size={28} weight="duotone"/>
-                    )}
+                      <ArrowClockwise size={28} weight="fill"/>) : (
+                      <ArrowClockwise size={28} weight="duotone"/>)}
                     Update Hospital
                   </button>
                 )}
@@ -86,13 +74,10 @@ export default function Header() {
                     className={`${
                       active ? 'bg-red-500' : 'text-red-500'
                     } group flex w-full items-center rounded-md p-2 gap-2`}
-                    onClick={() => setViewState('delHospitalView')}
-                  >
+                    onClick={() => setViewState('delHospitalView')}>
                     {active ? (
-                      <TrashSimple size={28} weight="fill"/>
-                    ) : (
-                      <TrashSimple size={28} weight="duotone"/>
-                    )}
+                      <TrashSimple size={28} weight="fill"/>) : (
+                      <TrashSimple size={28} weight="duotone"/>)}
                     Delete Hospital
                   </button>
                 )}
