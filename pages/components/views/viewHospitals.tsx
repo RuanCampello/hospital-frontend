@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import HospitalItem from "../hospitalItem"
 
 export default function ViewHospital() {
@@ -10,19 +10,22 @@ export default function ViewHospital() {
     })
     const data = await response.json()
     setHospitals(data)
-  } getHospitals()
+  } 
+  useEffect(() => {
+    getHospitals()
+  }, [])
 
   return (
     <div className='w-full p-8'>
-      <div className='grid grid-cols-8 p-2 font-semibold bg-slate-700 text-lg rounded-t-xl'>
+      <div className='grid grid-cols-9 p-2 font-semibold bg-slate-700 text-lg rounded-t-xl text-center'>
         <div className='grid grid-cols-5 col-span-2'>
           <span className='col-span-1 w-8 text-end'>#</span>
-          <span className='col-span-4'>Name</span>
+          <span className='col-span-4 text-start'>Name</span>
         </div>
         <div className='col-span-2'>Address</div>
         <div>Number</div>
         <div>CNPJ</div>
-        <div className='col-span-2'>ID</div>
+        <div className='col-span-3'>ID</div>
       </div>
       {
         hospitals?.map((hospital, index) => {
