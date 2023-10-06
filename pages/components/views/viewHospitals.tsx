@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import HospitalItem from "../hospitalItem"
+import { ArrowCounterClockwise } from "@phosphor-icons/react"
 
 export default function ViewHospital() {
   const [hospitals, setHospitals] = useState([])
@@ -14,18 +15,20 @@ export default function ViewHospital() {
   useEffect(() => {
     getHospitals()
   }, [])
-
   return (
-    <div className='w-full p-8'>
-      <div className='grid grid-cols-9 p-2 font-semibold bg-slate-700 text-lg rounded-t-xl text-center'>
+    <div className='w-full px-8'>
+      <button className='ms-auto py-2 px-3 gap-2 m-3 hover:bg-teal-700 bg-teal-600 rounded-full font-semibold flex text-center items-center' onClick={()=> getHospitals()}>
+        Recarregar Lista
+        <ArrowCounterClockwise size={28} />
+      </button>
+      <div className='grid grid-cols-6 p-2 font-semibold bg-slate-700 text-lg rounded-t-xl text-center'>
         <div className='grid grid-cols-5 col-span-2'>
           <span className='col-span-1 w-8 text-end'>#</span>
-          <span className='col-span-4 text-start'>Name</span>
+          <span className='col-span-4 text-start'>Nome</span>
         </div>
-        <div className='col-span-2'>Address</div>
-        <div>Number</div>
+        <div className='col-span-1'>Endereço</div>
+        <div>Telefone</div>
         <div>CNPJ</div>
-        <div className='col-span-3'>ID</div>
       </div>
       {
         hospitals?.map((hospital, index) => {

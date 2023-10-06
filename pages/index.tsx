@@ -3,7 +3,6 @@ import { viewState } from '@/atoms/viewAtom'
 import Header from "./components/header";
 import HomeView from "./components/views/homeView";
 import AddHospitalView from "./components/views/addHospitalView";
-import DelHospitalView from "./components/views/delHospitalView";
 import ViewHospital from "./components/views/viewHospitals";
 import PutHospitalView from "./components/views/putHospitalView";
 
@@ -15,7 +14,6 @@ export default function Home() {
         <div className='w-screen overflow-hidden'>
           {viewS === 'home' && <HomeView/>}
           {viewS === 'addHospitalView' && <AddHospitalView/>}
-          {viewS === 'delHospitalView' && <DelHospitalView/>}
           {viewS === 'putHospitalView' && <PutHospitalView/>}
           {viewS === 'getHospitalView' && <ViewHospital/>}
         </div>

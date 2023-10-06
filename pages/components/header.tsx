@@ -68,20 +68,6 @@ export default function Header() {
                   </button>
                 )}
               </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? 'bg-red-500' : 'text-red-500'
-                    } group flex w-full items-center rounded-md p-2 gap-2`}
-                    onClick={() => setViewState('delHospitalView')}>
-                    {active ? (
-                      <TrashSimple size={28} weight="fill"/>) : (
-                      <TrashSimple size={28} weight="duotone"/>)}
-                    Delete Hospital
-                  </button>
-                )}
-              </Menu.Item>
             </div>
           </Menu.Items>
         </Transition>
