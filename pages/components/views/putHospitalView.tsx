@@ -4,28 +4,33 @@ import { Alert, AlertTitle, Collapse, IconButton } from "@mui/material";
 import { XCircle } from "@phosphor-icons/react";
 
 export default function PutHospitalView() {
-  const [name, setName] = useState(null)
-  const [cnpj, setCnpj] = useState(null)
-  const [address, setAddress] = useState(null)
-  const [number, setNumber] = useState(null)
   const [id, setId] = useState(null)
   const [status, setStatus] = useState(Number)
   const [open, setOpen] = useState(false)
   const [dataErrors, setDataErrors] = useState(false)
   const [respo, setRespo] = useState(null)
 
+  const idSession = localStorage.getItem('id')
+  
   async function putHospital() {
-    const response = await fetch(`http://localhost:8080/hospital/${id}`, {
+    const nameSession = localStorage.getItem('name')
+    const addressSession = localStorage.getItem('address')
+    const cnpjSession = localStorage.getItem('cnpj')
+    const numberSession = localStorage.getItem('phone number')
+
+    const response = await fetch(`http://localhost:8080/hospital/${idSession}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        id: id,
-        name: name,
-        address: address,
-        cnpj: cnpj,
-        number: number
+        id: idSession,
+        name: nameSession,
+        address: addressSession,
+        cnpj: cnpjSession,
+        number: numberSession
       })
     })
+    console.log(id, name, addressSession, cnpjSession, numberSession);
+    
     const data = await response.json()
     console.log(data)
     
@@ -43,14 +48,13 @@ export default function PutHospitalView() {
   return (
     <div>
       <form className='py-16 xl:px-[400px] px-16' onSubmit={handleSubmit}>
-        <FormField func={setId} name={'ID'}/>
         <div className='grid md:grid-cols-2 md:gap-6'>
-          <FormField func={setName} name={'Name'} />
-          <FormField func={setCnpj} name={'CNPJ'} />
+          <FormField key={'name'} name={'Name'} />
+          <FormField key={'cnpj'} name={'CNPJ'} />
         </div>
         <div className='grid md:grid-cols-2 md:gap-6 mt-6'>
-          <FormField func={setAddress} name={'Address'} />
-          <FormField func={setNumber} name={'Phone number'} />
+          <FormField key={'address'} name={'Address'}/>
+          <FormField key={'number'} name={'Phone number'}/>
         </div>
         <button className='bg-teal-600 text-md font-semibold px-6 p-3 hover:bg-teal-700 float-right rounded-full' type='submit'>Submit</button>
       </form>

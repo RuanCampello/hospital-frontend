@@ -54,20 +54,6 @@ export default function Header() {
                   </button>
                 )}
               </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? 'bg-teal-500' : 'text-slate-200'
-                    } group flex w-full items-center rounded-md p-2 gap-2`}
-                    onClick={() => setViewState('putHospitalView')}>
-                    {active ? (
-                      <ArrowClockwise size={28} weight="fill"/>) : (
-                      <ArrowClockwise size={28} weight="duotone"/>)}
-                    Update Hospital
-                  </button>
-                )}
-              </Menu.Item>
             </div>
           </Menu.Items>
         </Transition>
