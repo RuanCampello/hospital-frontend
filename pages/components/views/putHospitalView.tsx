@@ -49,12 +49,12 @@ export default function PutHospitalView() {
     <div>
       <form className='py-16 xl:px-[400px] px-16' onSubmit={handleSubmit}>
         <div className='grid md:grid-cols-2 md:gap-6'>
-          <FormField key={'name'} name={'Name'} />
-          <FormField key={'cnpj'} name={'CNPJ'} />
+          <FormField key={'name'} name={'Name'} isDefault={true} />
+          <FormField key={'cnpj'} name={'CNPJ'} isDefault={true} />
         </div>
         <div className='grid md:grid-cols-2 md:gap-6 mt-6'>
-          <FormField key={'address'} name={'Address'}/>
-          <FormField key={'number'} name={'Phone number'}/>
+          <FormField key={'address'} name={'Address'} isDefault={true}/>
+          <FormField key={'number'} name={'Phone number'} isDefault={true}/>
         </div>
         <button className='bg-teal-600 text-md font-semibold px-6 p-3 hover:bg-teal-700 float-right rounded-full' type='submit'>Submit</button>
       </form>

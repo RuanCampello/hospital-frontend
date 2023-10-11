@@ -1,10 +1,8 @@
 import { viewState } from "@/atoms/viewAtom"
-import { Dialog, Transition } from "@headlessui/react"
 import { Collapse, Alert, IconButton, AlertTitle } from "@mui/material"
 import { PencilSimple, TrashSimple, XCircle } from "@phosphor-icons/react"
-import { Fragment, useState } from "react"
+import { useState } from "react"
 import { useRecoilState } from "recoil"
-import FormField from "./formField"
 
 interface HospitalItemProps {
   index: number,
@@ -18,10 +16,7 @@ interface HospitalItemProps {
 export default function HospitalItem({index, name, address, number, cnpj, id}: HospitalItemProps) {
   const [viewS, setViewState] = useRecoilState(viewState) 
   const [open, setOpen] = useState(false)
-  const [dataErrors, setDataErrors] = useState(null)
-  const [respo, setRespo] = useState(null)
   const [status, setStatus] = useState(Number)
-  const [show, setShow] = useState(false)
 
   async function delHospital(id: String) {
     const response = await fetch(`http://localhost:8080/hospital/${id}`, {
@@ -43,32 +38,6 @@ export default function HospitalItem({index, name, address, number, cnpj, id}: H
     localStorage.setItem('address', address)
 
     setViewState('putHospitalView')
-  }
-  async function putHospital() {
-    const response = await fetch(`http://localhost:8080/hospital/${id}`, {
-      method: 'PUT',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        id: id,
-        name: name,
-        address: address,
-        cnpj: cnpj,
-        number: number
-      })
-    })
-    const data = await response.json()
-    console.log(data)
-    
-    if(data!['errors'] !== undefined && data){
-      setDataErrors(data!['errors'][0]['defaultMessage'])
-    }
-    if(data) setRespo(data)
-    setStatus(response.status)
-  }
-  function handleSubmit(e:any) {
-    e.preventDefault()
-    putHospital()
-    setOpen(true)
   }
   return (
   <div>
