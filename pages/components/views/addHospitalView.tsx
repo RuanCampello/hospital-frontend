@@ -39,7 +39,7 @@ export default function AddHospitalView() {
   }
   return (
     <div>
-      <form className='py-16 xl:px-[400px] px-16' onSubmit={handleSubmit}>
+      <form className='py-16 xl:px-[150px] px-16' onSubmit={handleSubmit}>
         <div className='grid md:grid-cols-2 md:gap-6'>
           <FormField func={setName} name={'Name'} isDefault={false} />
           <FormField func={setCnpj} name={'CNPJ'} isDefault={false} />

@@ -1,21 +1,24 @@
 import { useRecoilState } from "recoil";
 import { viewState } from '@/atoms/viewAtom'
 import Header from "./components/header";
-import HomeView from "./components/views/homeView";
 import AddHospitalView from "./components/views/addHospitalView";
 import ViewHospital from "./components/views/viewHospitals";
 import PutHospitalView from "./components/views/putHospitalView";
+import Sidebar from "./components/sidebar";
+import ViewPatient from "./components/views/viewPatient";
 
 export default function Home() {
   const [viewS, setViewState] = useRecoilState(viewState)
   return (
       <main className='h-screen bg-slate-600'>
-        <Header/>
+        <Sidebar/>
         <div className='w-screen overflow-hidden'>
-          {viewS === 'home' && <HomeView/>}
-          {viewS === 'addHospitalView' && <AddHospitalView/>}
-          {viewS === 'putHospitalView' && <PutHospitalView/>}
-          {viewS === 'getHospitalView' && <ViewHospital/>}
+          <div className='sm:ml-64'>
+            {viewS === 'getPatientView' && <ViewPatient/>}
+            {viewS === 'addHospitalView' && <AddHospitalView/>}
+            {viewS === 'putHospitalView' && <PutHospitalView/>}
+            {viewS === 'getHospitalView' && <ViewHospital/>}
+          </div>
         </div>
       </main>
   )
