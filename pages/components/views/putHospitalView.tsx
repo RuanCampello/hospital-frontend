@@ -28,9 +28,7 @@ export default function PutHospitalView() {
         cnpj: cnpjSession,
         number: numberSession
       })
-    })
-    console.log(id, name, addressSession, cnpjSession, numberSession);
-    
+    })    
     const data = await response.json()
     console.log(data)
     
@@ -47,14 +45,14 @@ export default function PutHospitalView() {
   }
   return (
     <div>
-      <form className='py-16 xl:px-[400px] px-16' onSubmit={handleSubmit}>
-        <div className='grid md:grid-cols-2 md:gap-6'>
-          <FormField key={'name'} name={'Name'} isDefault={true} />
-          <FormField key={'cnpj'} name={'CNPJ'} isDefault={true} />
+      <form className='py-16 xl:px-[200px] px-16' onSubmit={handleSubmit}>
+      <div className='grid md:grid-cols-2 md:gap-6'>
+          <FormField name={'name'} dName={'Name'} isDefault={true} />
+          <FormField name={'cnpj'} dName={'CNPJ'} isDefault={true} />
         </div>
         <div className='grid md:grid-cols-2 md:gap-6 mt-6'>
-          <FormField key={'address'} name={'Address'} isDefault={true}/>
-          <FormField key={'number'} name={'Phone number'} isDefault={true}/>
+          <FormField name={'address'} dName={'Address'} isDefault={true}/>
+          <FormField name={'phone number'} dName={'Phone number'} isDefault={true}/>
         </div>
         <button className='bg-teal-600 text-md font-semibold px-6 p-3 hover:bg-teal-700 float-right rounded-full' type='submit'>Submit</button>
       </form>

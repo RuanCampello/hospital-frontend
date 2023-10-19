@@ -19,7 +19,7 @@ export default function Sidebar() {
       <hr className='border-slate-600'/>
       <p className='text-slate-400 text-sm'>hospital</p>
       <SidebarItem view="getHospitalView" title="Visualizar hospitais" icon={<Eye size={24} weight={viewS === 'getHospitalView' ? 'fill' : 'duotone'}/>}/>
-      <SidebarItem view="addHospitalView" title="Adicionar Hospital" icon={<PlusCircle size={24} weight={viewS === 'addHospitalView' ? 'fill' : 'duotone'}/>}/>
+      <SidebarItem view="addHospitalView" title="Adicionar hospital" icon={<PlusCircle size={24} weight={viewS === 'addHospitalView' ? 'fill' : 'duotone'}/>}/>
       <hr className='border-slate-600'/>
       <p className='text-slate-400 text-sm'>paciente</p>
       <SidebarItem view="getPatientView" title="Visualizar pacientes" icon={<Eye size={24} weight={viewS === 'getPatientView' ? 'fill' : 'duotone'}/>}/>

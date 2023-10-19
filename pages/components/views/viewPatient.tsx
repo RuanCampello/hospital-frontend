@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import PatientItem from "../patientItem"
+import { ArrowCounterClockwise } from "@phosphor-icons/react"
 
 export default function HomeView() {
   const [patients, setPatients] = useState([])
@@ -17,7 +18,11 @@ export default function HomeView() {
   }, [])
   return (
     <main className='h-full w-full px-8 text-center'>
-    <div className='grid grid-cols-5 bg-slate-700 rounded-t-xl 2xl:text-lg md:text-base items-center py-2 mt-6 mb-2 font-semibold md:px-8 px-2 text-xs'>
+      <button className='ms-auto py-2 px-3 gap-2 m-3 hover:bg-teal-700 bg-teal-600 rounded-full font-semibold flex text-center items-center' onClick={()=> getPatients()}>
+        Recarregar Lista
+        <ArrowCounterClockwise size={28} />
+      </button>
+    <div className='grid grid-cols-6 bg-slate-700 rounded-t-xl 2xl:text-lg md:text-base items-center py-2 mb-2 font-semibold md:px-8 px-2 text-xs'>
       <div className='text-start truncate'>Nome</div>
       <div>CPF</div>
       <div>Data de nascimento</div>
@@ -29,7 +34,7 @@ export default function HomeView() {
         patients?.map((patient) => {
           return (
             <div key={patient['id']}>
-              <PatientItem cpf={patient['cpf']} name={patient['name']} date={patient['date']} personalNumber={patient['personal_number']} responsibleNumber={patient['responsible_number']}/>
+              <PatientItem id={patient['id']} cpf={patient['cpf']} name={patient['name']} date={patient['date']} personalNumber={patient['personal_number']} responsibleNumber={patient['responsible_number']}/>
             </div>
           )
         })
