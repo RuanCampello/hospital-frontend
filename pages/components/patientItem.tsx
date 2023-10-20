@@ -45,7 +45,7 @@ export default function PatientItem({id, cpf, name, date, personalNumber, respon
   }
   return (
     <div>
-  <div className='grid grid-cols-6 py-2 items-center md:px-8 xl:text-lg md:text-base text-xs'>
+  <div className='grid grid-cols-6 py-2 items-center md:px-8 xl:text-lg text-xs'>
     <div className='text-start inline'>
       <p className='truncate max-w-[28rem]'>
         {name}
@@ -57,10 +57,10 @@ export default function PatientItem({id, cpf, name, date, personalNumber, respon
     <div>{responsibleNumber}</div>
     <div className='col-span-1 flex justify-around'>
       <button className='border-2 hover:bg-yellow-500 border-yellow-500 p-2 rounded-full' onClick={()=> handlePut()}>
-        <PencilSimple size={24} weight='fill'/>
+        <PencilSimple className='xl:h-6 xl:w-6 w-4 h-4' weight='fill'/>
       </button>
       <button className='border-2 hover:bg-red-500 border-red-500 p-2 rounded-full' onClick={()=> handleDelete()}>
-        <TrashSimple size={24} weight='fill'/>
+        <TrashSimple className='xl:h-6 xl:w-6 w-4 h-4' weight='fill'/>
       </button>
     </div>
   </div>

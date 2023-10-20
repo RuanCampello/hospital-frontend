@@ -2,8 +2,11 @@ import { useState } from "react";
 import FormField from "../formField";
 import { Alert, AlertTitle, Collapse, IconButton } from "@mui/material";
 import { XCircle } from "@phosphor-icons/react";
+import { useRecoilState } from "recoil";
+import { viewState } from "@/atoms/viewAtom";
 
 export default function PutPatientView() {
+  const [viewS, setViewState] = useRecoilState(viewState)
   const [id, setId] = useState(null)
   const [data, setData] = useState(null)
   const [open, setOpen] = useState(false)
@@ -36,6 +39,7 @@ export default function PutPatientView() {
     if(data) {
       setData(data)
       setStatus(response.status)
+      //if(status === 200) setViewState('getPatientView')
     }
   }
   function handleSubmit(e: any) {

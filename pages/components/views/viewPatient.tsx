@@ -22,7 +22,7 @@ export default function HomeView() {
         Recarregar Lista
         <ArrowCounterClockwise size={28} />
       </button>
-    <div className='grid grid-cols-6 bg-slate-700 rounded-t-xl 2xl:text-lg md:text-base items-center py-2 mb-2 font-semibold md:px-8 px-2 text-xs'>
+    <div className='grid grid-cols-6 bg-slate-700 rounded-t-xl 2xl:text-lg text-sm items-center py-2 mb-2 font-semibold md:px-8 px-2'>
       <div className='text-start truncate'>Nome</div>
       <div>CPF</div>
       <div>Data de nascimento</div>
