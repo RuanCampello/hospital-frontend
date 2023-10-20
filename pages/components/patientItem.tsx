@@ -3,6 +3,7 @@ import { Alert, AlertTitle, Collapse, IconButton } from "@mui/material"
 import { PencilSimple, TrashSimple, XCircle } from "@phosphor-icons/react"
 import { useState } from "react"
 import { useRecoilState } from "recoil"
+import FuncButton from "./funcButtons"
 
 interface PatientItemProps {
   id: string,
@@ -56,12 +57,7 @@ export default function PatientItem({id, cpf, name, date, personalNumber, respon
     <div>{personalNumber}</div>
     <div>{responsibleNumber}</div>
     <div className='col-span-1 flex justify-around'>
-      <button className='border-2 hover:bg-yellow-500 border-yellow-500 p-2 rounded-full' onClick={()=> handlePut()}>
-        <PencilSimple className='xl:h-6 xl:w-6 w-4 h-4' weight='fill'/>
-      </button>
-      <button className='border-2 hover:bg-red-500 border-red-500 p-2 rounded-full' onClick={()=> handleDelete()}>
-        <TrashSimple className='xl:h-6 xl:w-6 w-4 h-4' weight='fill'/>
-      </button>
+      <FuncButton funcDelete={handleDelete} funcPut={handlePut}/>
     </div>
   </div>
     {status ?
