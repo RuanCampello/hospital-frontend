@@ -25,7 +25,7 @@ export default function Home() {
             {viewS === 'addPatientView' && <AddPatientView/>}
             {viewS === 'putPatientView' && <PutPatientView/>}
             {viewS === 'getEmployeeView' && <ViewEmployee/>}
-            {viewS === 'putEmployeeView' && <PutEmployeeView/>}
+            {viewS === 'putEmployeeView' && <PutEmployeeView/>} 
           </div>
         </div>
       </main>

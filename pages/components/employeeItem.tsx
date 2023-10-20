@@ -25,7 +25,7 @@ export default function EmployeeItem({id, name, cpf, date, number, func}: Employ
     console.log(response.status)
     setStatus(response.status)
   }
-  function handleDelete() {
+  function handleDelete() { 
     delEmployee(id)
     setOpen(true)
   }

@@ -1,7 +1,7 @@
 export default function PutEmployeeView() {
   return (
     <div>
-      aaaaaaaaaa
+      aaaaaaaaa
     </div>
   )
 }
