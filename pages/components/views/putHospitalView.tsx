@@ -28,7 +28,9 @@ export default function PutHospitalView() {
         cnpj: cnpjSession,
         number: numberSession
       })
-    })    
+    })
+    console.log(id, name, addressSession, cnpjSession, numberSession);
+    
     const data = await response.json()
     console.log(data)
     
@@ -45,8 +47,8 @@ export default function PutHospitalView() {
   }
   return (
     <div>
-      <form className='py-16 xl:px-[200px] px-16' onSubmit={handleSubmit}>
-      <div className='grid md:grid-cols-2 md:gap-6'>
+      <form className='py-16 xl:px-[400px] px-16' onSubmit={handleSubmit}>
+        <div className='grid md:grid-cols-2 md:gap-6'>
           <FormField name={'name'} dName={'Name'} isDefault={true} />
           <FormField name={'cnpj'} dName={'CNPJ'} isDefault={true} />
         </div>
@@ -64,9 +66,9 @@ export default function PutHospitalView() {
             </IconButton>
           } className={`xl:w-96 float-right mx-16 xl:me-[400px] mt-auto items-center`} > 
           { status === 200 ? 
-          <span><AlertTitle><b>Success</b></AlertTitle>Hospital Updated!</span> : 
+          <span><AlertTitle><b>Success</b></AlertTitle>Hospital atualizado!</span> : 
           status === 500 ? 
-          <span><AlertTitle><b>Error</b></AlertTitle>CNPJ must be unique</span> : <span><AlertTitle><b>Error</b></AlertTitle>{dataErrors}</span> }
+          <span><AlertTitle><b>Error</b></AlertTitle>CNPJ deve ser único</span> : <span><AlertTitle><b>Error</b></AlertTitle>{dataErrors}</span> }
           </Alert>
           </Collapse> : null
         }

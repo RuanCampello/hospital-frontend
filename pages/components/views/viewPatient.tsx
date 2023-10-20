@@ -26,8 +26,8 @@ export default function HomeView() {
       <div className='text-start truncate'>Nome</div>
       <div>CPF</div>
       <div>Data de nascimento</div>
-      <div>Telefone pessoal</div>
-      <div>Telefone do responsavél</div>
+      <div>Número pessoal</div>
+      <div>Número do responsavél</div>
     </div>
     <div>
       {
