@@ -17,12 +17,12 @@ export default function HomeView() {
     getPatients()
   }, [])
   return (
-    <main className='h-full w-full px-8 text-center'>
+    <main className='h-full w-full xl:px-8 lg:px-6 px-4 text-center'>
       <button className='ms-auto py-2 px-3 gap-2 m-3 hover:bg-teal-700 bg-teal-600 rounded-full font-semibold flex text-center items-center' onClick={()=> getPatients()}>
         Recarregar Lista
         <ArrowCounterClockwise size={28} />
       </button>
-    <div className='grid grid-cols-6 bg-slate-700 rounded-t-xl 2xl:text-lg text-sm items-center py-2 mb-2 font-semibold md:px-8 px-2'>
+    <div className='grid grid-cols-6 bg-slate-700 rounded-t-xl 2xl:text-lg text-sm items-center py-2 mb-2 font-semibold lg:px-8 px-4'>
       <div className='text-start truncate'>Nome</div>
       <div>CPF</div>
       <div>Data de nascimento</div>

@@ -2,6 +2,7 @@ import { useState } from "react"
 import FuncButton from "./funcButtons"
 import { useRecoilState } from "recoil"
 import { viewState } from "@/atoms/viewAtom"
+import { formatDate } from "./patientItem"
 
 interface EmployeeItemProps {
   id: string,
@@ -44,7 +45,7 @@ export default function EmployeeItem({id, name, cpf, date, number, func}: Employ
       <div className='grid grid-cols-6 items-center text-center xl:text-lg py-2 text-sm xl:px-3'>
         <div>{name}</div>
         <div>{cpf}</div>
-        <div>{String(date).replaceAll('-', '/')}</div>
+        <div>{formatDate(date)}</div>
         <div>{number}</div>
         <div>{func}</div>
         <div>

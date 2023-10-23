@@ -1,6 +1,6 @@
 import { viewState } from "@/atoms/viewAtom"
 import { Alert, AlertTitle, Collapse, IconButton } from "@mui/material"
-import { PencilSimple, TrashSimple, XCircle } from "@phosphor-icons/react"
+import { XCircle } from "@phosphor-icons/react"
 import { useState } from "react"
 import { useRecoilState } from "recoil"
 import FuncButton from "./funcButtons"
@@ -14,6 +14,18 @@ interface PatientItemProps {
   responsibleNumber: string
 }
 
+export function formatDate(date: Date) {
+  let data = String(date).replaceAll('-','')
+  console.log(date, data)
+  let year = data.substring(0,4)
+  let month = data.substring(4,6)
+  let day = data.substring(6,11)
+  console.log(`day: ${day} month:${month} year:${year}`)
+  
+  let dataFormated = (`${day}/${month}/${year}`)
+  return dataFormated
+}
+
 export default function PatientItem({id, cpf, name, date, personalNumber, responsibleNumber}: PatientItemProps) {
   const [status, setStatus] = useState(Number)
   const [viewS, setViewState] = useRecoilState(viewState)
@@ -24,9 +36,6 @@ export default function PatientItem({id, cpf, name, date, personalNumber, respon
       method: 'DELETE',
       headers: {'Content-Type': 'application/json'},
     })
-    console.log(response.status)
-    console.log(response);
-    
     setStatus(response.status)
   }
 
@@ -46,14 +55,14 @@ export default function PatientItem({id, cpf, name, date, personalNumber, respon
   }
   return (
     <div>
-  <div className='grid grid-cols-6 py-2 items-center md:px-8 xl:text-lg text-xs'>
+  <div className='grid grid-cols-6 py-2 items-center px-4 lg:px-8 xl:text-lg text-xs'>
     <div className='text-start inline'>
       <p className='truncate max-w-[28rem]'>
         {name}
       </p>
     </div>
     <div>{cpf}</div>
-    <div>{date.toString().replace(/-/gi, '/')}</div>
+    <div>{formatDate(date)}</div>
     <div>{personalNumber}</div>
     <div>{responsibleNumber}</div>
     <div className='col-span-1 flex justify-around'>

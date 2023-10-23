@@ -28,9 +28,7 @@ export default function PutHospitalView() {
         cnpj: cnpjSession,
         number: numberSession
       })
-    })
-    console.log(id, name, addressSession, cnpjSession, numberSession);
-    
+    })    
     const data = await response.json()
     console.log(data)
     
