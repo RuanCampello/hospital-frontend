@@ -7,6 +7,8 @@ import Sidebar from "./components/sidebar";
 import ViewPatient from "./components/views/viewPatient";
 import AddPatientView from "./components/views/addPatientView";
 import PutPatientView from "./components/views/putPatientView";
+import ViewEmployee from "./components/views/viewEmployee";
+import PutEmployeeView from "./components/views/putEmployeeView";
 import Homepage from "./components/views/homepage";
 
 export default function Home() {
@@ -22,6 +24,8 @@ export default function Home() {
             {viewS === 'getHospitalView' && <ViewHospital/>}
             {viewS === 'addPatientView' && <AddPatientView/>}
             {viewS === 'putPatientView' && <PutPatientView/>}
+            {viewS === 'getEmployeeView' && <ViewEmployee/>}
+            {viewS === 'putEmployeeView' && <PutEmployeeView/>} 
             {viewS === 'home' && <Homepage/>}
           </div>
         </div>

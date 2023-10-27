@@ -24,6 +24,9 @@ export default function Sidebar() {
       <p className='text-slate-400 text-sm'>paciente</p>
       <SidebarItem view="getPatientView" title="Visualizar pacientes" icon={<Eye size={24} weight={viewS === 'getPatientView' ? 'fill' : 'duotone'}/>}/>
       <SidebarItem view="addPatientView" title="Adicionar pacientes" icon={<PlusCircle size={24} weight={viewS === 'addPatientView' ? 'fill' : 'duotone'}/>}/>
+      <hr className='border-slate-600'/>
+      <p className='text-slate-400 text-sm'>funcionários</p>
+      <SidebarItem view='getEmployeeView' title="Visualizar funcionários" icon={<Eye size={24} weight={viewS === 'getEmployeeView' ? 'fill' : 'duotone'}/>}/>
       </ul>
    </div>
 </aside>
