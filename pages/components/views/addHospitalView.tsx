@@ -1,7 +1,8 @@
 import { useState } from "react";
 import FormField from "../formField"
 import { Alert, AlertTitle, Collapse, IconButton } from "@mui/material";
-import { XCircle } from "@phosphor-icons/react";
+import { CheckCircle, XCircle } from "@phosphor-icons/react";
+import ToastComponent from "../toast";
 export default function AddHospitalView() {
   const [name, setName] = useState(null)
   const [cnpj, setCnpj] = useState(null)
@@ -41,28 +42,21 @@ export default function AddHospitalView() {
     <div>
       <form className='py-16 xl:px-[150px] px-16' onSubmit={handleSubmit}>
         <div className='grid md:grid-cols-2 md:gap-6'>
-          <FormField func={setName} name={'Name'} isDefault={false} />
-          <FormField func={setCnpj} name={'CNPJ'} isDefault={false} />
+          <FormField dName="Nome" func={setName} name={'Name'} isDefault={false} />
+          <FormField dName="CNPJ" func={setCnpj} name={'CNPJ'} isDefault={false} />
         </div>
         <div className='grid md:grid-cols-2 md:gap-6 mt-6'>
-          <FormField func={setAddress} name={'Address'} isDefault={false} />
-          <FormField func={setNumber} name={'Phone number'} isDefault={false} />
+          <FormField dName="Endereço" func={setAddress} name={'Address'} isDefault={false} />
+          <FormField dName="Telefone" func={setNumber} name={'Phone number'} isDefault={false} />
         </div>
         <button className='bg-teal-600 text-md font-semibold px-6 p-3 hover:bg-teal-700 float-right rounded-full' type='submit'>Submit</button>
       </form>
       {respo ?
-          <Collapse in={open}>
-          <Alert color={status === 201 ? 'success' : 'error'} severity={status === 201 ? 'success' : 'error'} variant='filled' action={
-            <IconButton aria-label='close' color='inherit' onClick={()=> {setOpen(false)}}>
-              <XCircle className='mb-1' weight='duotone'/>
-            </IconButton>
-          } className={`xl:w-96 float-right mx-16 xl:me-[400px] mt-auto items-center`} > 
-          { status === 201 ? 
-          <span><AlertTitle><b>Success</b></AlertTitle>Hospital Registered!</span> : 
-          status === 500 ? 
-          <span><AlertTitle><b>Error</b></AlertTitle>CNPJ must be unique</span> : <span><AlertTitle><b>Error</b></AlertTitle>{dataErrors}</span> }
-          </Alert>
-          </Collapse> : null
+        <ToastComponent oFunc={open} cFunc={setOpen} icon={status === 201 ? <CheckCircle size={32}/> : <XCircle size={32}/>} title={status === 201 ? 'Success' : 'Error'} disc={status === 201 ? 'Hospital Registered!' : status === 500 ? 'CNPJ must be unique' : String(dataErrors)
+      }/> 
+        
+        
+        : null
       }
     </div>
   )
