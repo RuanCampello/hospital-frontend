@@ -1,9 +1,11 @@
 import { viewState } from "@/atoms/viewAtom"
-import { Collapse, Alert, IconButton, AlertTitle } from "@mui/material"
-import { PencilSimple, TrashSimple, XCircle } from "@phosphor-icons/react"
+import { CheckCircle, XCircle } from "@phosphor-icons/react"
 import { useState } from "react"
 import { useRecoilState } from "recoil"
 import FuncButton from "./funcButtons"
+import ToastComponent from "./toast"
+import { actionState } from "@/atoms/actionAtom"
+import { hospitalAddress, hospitalCnpj, hospitalId, hospitalName, hospitalNumber } from "@/atoms/updateHospitalAtom"
 
 interface HospitalItemProps {
   index: number,
@@ -15,6 +17,13 @@ interface HospitalItemProps {
 }
 
 export default function HospitalItem({index, name, address, number, cnpj, id}: HospitalItemProps) {
+  const [hId, setHospitalId] = useRecoilState(hospitalId)
+  const [hName, setHospitalName] = useRecoilState(hospitalName)
+  const [hCnpj, setHospitalCnpj] = useRecoilState(hospitalCnpj)
+  const [hAddress, setHospitalAddress] = useRecoilState(hospitalAddress)
+  const [hNumber, setHospitalNumber] = useRecoilState(hospitalNumber)
+
+  const [actionS, setActionState] = useRecoilState(actionState)
   const [viewS, setViewState] = useRecoilState(viewState) 
   const [open, setOpen] = useState(false)
   const [status, setStatus] = useState(Number)
@@ -29,15 +38,16 @@ export default function HospitalItem({index, name, address, number, cnpj, id}: H
   }
   function handleDelete() {
     delHospital(id)
+    setOpen(false)
     setOpen(true)
+    setActionState(true)
   }
   function handlePut() {
-    localStorage.setItem('id', id)
-    localStorage.setItem('name', name)
-    localStorage.setItem('cnpj', cnpj)
-    localStorage.setItem('phone number', number)
-    localStorage.setItem('address', address)
-
+    setHospitalId(id)
+    setHospitalName(name)
+    setHospitalCnpj(cnpj)
+    setHospitalAddress(address)
+    setHospitalNumber(number)
     setViewState('putHospitalView')
   }
   return (
@@ -58,19 +68,7 @@ export default function HospitalItem({index, name, address, number, cnpj, id}: H
     
   </div>
   {status ?
-      <Collapse in={open}>
-      <Alert color={status === 200 ? 'success' : 'error'} severity={status === 200 ? 'success' : 'error'} variant='filled' action={
-        <IconButton aria-label='close' color='inherit' onClick={()=> {setOpen(false)}}>
-          <XCircle className='mb-1' weight='duotone'/>
-        </IconButton>
-      } className={`xl:w-96 float-right  my-8 items-center`} > 
-      { 
-        status === 200 ? 
-        <span><AlertTitle><b>Success</b></AlertTitle>Hospital Excluido!</span> :
-        <span><AlertTitle><b>Error</b></AlertTitle>Hospital não existe</span>
-      }
-      </Alert>
-      </Collapse> 
+    <ToastComponent icon={status !== 200 ? <CheckCircle size={32}/> : <XCircle size={32}/>} title={status === 200 ? 'Success' : 'Error'} disc={status === 200 ? 'Hospital deleted!' : 'Hospital does not exist'} oFunc={open} cFunc={setOpen}/>
     :null}
   </div>
   )

@@ -4,6 +4,7 @@ import { XCircle } from "@phosphor-icons/react"
 import { useState } from "react"
 import { useRecoilState } from "recoil"
 import FuncButton from "./funcButtons"
+import { patientId, patientName, patientDate, patientCpf, patientPersonalNumber, patientResponsibleNumber } from "@/atoms/updatePatientAtom"
 
 interface PatientItemProps {
   id: string,
@@ -31,6 +32,13 @@ export default function PatientItem({id, cpf, name, date, personalNumber, respon
   const [viewS, setViewState] = useRecoilState(viewState)
   const [open, setOpen] = useState(false)
 
+  const [pId, setPatientId] = useRecoilState(patientId)
+  const [pName, setPatientName] = useRecoilState(patientName)
+  const [pDate, setPatientDate] = useRecoilState(patientDate)
+  const [pCpf, setPatientCpf] = useRecoilState(patientCpf)
+  const [pPNumber, setPatientPersonalNumber] = useRecoilState(patientPersonalNumber)
+  const [pRNumber, setPatientResponsibleNumber] = useRecoilState(patientResponsibleNumber)
+
   async function delPatient(id: String) {
     const response = await fetch(`http://localhost:8080/patient/${id}`, {
       method: 'DELETE',
@@ -40,13 +48,12 @@ export default function PatientItem({id, cpf, name, date, personalNumber, respon
   }
 
   function handlePut() {
-    localStorage.setItem('idPatient', id)
-    localStorage.setItem('namePatient', name)
-    localStorage.setItem('cpfPatient', cpf)
-    localStorage.setItem('datePatient', String(date))
-    localStorage.setItem('numberPersonal', personalNumber)
-    localStorage.setItem('numberResponsible', responsibleNumber)
-
+    setPatientId(id)
+    setPatientName(name)
+    setPatientDate(String(date))
+    setPatientCpf(cpf)
+    setPatientPersonalNumber(personalNumber)
+    setPatientResponsibleNumber(responsibleNumber)
     setViewState('putPatientView')
   }
   function handleDelete() {

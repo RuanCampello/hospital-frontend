@@ -1,9 +1,10 @@
 import { useState } from "react";
 import FormField from "../formField";
-import { Alert, AlertTitle, Collapse, IconButton } from "@mui/material";
-import { XCircle } from "@phosphor-icons/react";
 import { useRecoilState } from "recoil";
 import { viewState } from "@/atoms/viewAtom";
+import { patientCpf, patientDate, patientId, patientName, patientPersonalNumber, patientResponsibleNumber } from "@/atoms/updatePatientAtom";
+import ToastComponent from "../toast";
+import { CheckCircle, XCircle } from "@phosphor-icons/react";
 
 export default function PutPatientView() {
   const [viewS, setViewState] = useRecoilState(viewState)
@@ -12,23 +13,24 @@ export default function PutPatientView() {
   const [open, setOpen] = useState(false)
   const [dataErrors, setDataErrors] = useState(null)
   const [status, setStatus] = useState(Number)
-  const idSession = localStorage.getItem('idPatient')
-  async function putPatient() {
-    const nameSession = localStorage.getItem('namePatient')
-    const dateSession = localStorage.getItem('datePatient')
-    const cpfSession = localStorage.getItem('cpfPatient')
-    const numberPersonalSession = localStorage.getItem('numberPersonal')
-    const numberResponsibleSession = localStorage.getItem('numberResponsible')
 
-    const response = await fetch(`http://localhost:8080/patient/${idSession}`, {
+  const [pId, setPatientId] = useRecoilState(patientId)
+  const [pName, setPatientName] = useRecoilState(patientName)
+  const [pDate, setPatientDate] = useRecoilState(patientDate)
+  const [pCpf, setPatientCpf] = useRecoilState(patientCpf)
+  const [pPNumber, setPatientPersonalNumber] = useRecoilState(patientPersonalNumber)
+  const [pRNumber, setPatientResponsibleNumber] = useRecoilState(patientResponsibleNumber)
+
+  async function putPatient() {
+    const response = await fetch(`http://localhost:8080/patient/${pId}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        name: nameSession,
-        date: dateSession,
-        cpf: cpfSession,
-        personal_number: numberPersonalSession,
-        responsible_number: numberResponsibleSession
+        name: pName,
+        date: pDate,
+        cpf: pCpf,
+        personal_number: pPNumber,
+        responsible_number: pRNumber
       })
     })
     const data = await response.json()
@@ -39,7 +41,6 @@ export default function PutPatientView() {
     if(data) {
       setData(data)
       setStatus(response.status)
-      //if(status === 200) setViewState('getPatientView')
     }
   }
   function handleSubmit(e: any) {
@@ -51,30 +52,20 @@ export default function PutPatientView() {
     <div>
       <form className='py-16 xl:px-[200px] px-16' onSubmit={handleSubmit}>
         <div className='grid md:grid-cols-2 md:gap-6'>
-          <FormField name={'namePatient'} isDefault={true} dName={'Nome'} />
-          <FormField name={'cpfPatient'} isDefault={true} dName={'CPF'} />
+          <FormField id={6} func={setPatientName} isDefault={true} dName={'Nome'} />
+          <FormField id={8} func={setPatientCpf} isDefault={true} dName={'CPF'} />
         </div>
         <div className='grid md:grid-cols-3 md:gap-6 mt-6'>
-          <FormField name={'datePatient'} type="date" isDefault={true} dName={"Data de nascimento"}/>
-          <FormField name={'numberPersonal'} isDefault={true} dName={'Telefone pessoal'}/>
-          <FormField name={'numberResponsible'} isDefault={true} dName={'Telefone do responsável'}/>
+          <FormField id={7} func={setPatientDate} type="date" isDefault={true} dName={"Data de nascimento"}/>
+          <FormField id={9} func={setPatientPersonalNumber} isDefault={true} dName={'Telefone pessoal'}/>
+          <FormField id={10} func={setPatientResponsibleNumber} isDefault={true} dName={'Telefone do responsável'}/>
         </div>
         <button className='bg-teal-600 text-md font-semibold px-6 p-3 hover:bg-teal-700 float-right rounded-full' type='submit'>Submit</button>
       </form>
-      {data ?
-          <Collapse in={open}>
-          <Alert color={status === 200 ? 'success' : 'error'} severity={status === 200 ? 'success' : 'error'} variant='filled' action={
-            <IconButton aria-label='close' color='inherit' onClick={()=> {setOpen(false)}}>
-              <XCircle className='mb-1' weight='duotone'/>
-            </IconButton>
-          } className={`xl:w-96 float-right mx-16 xl:me-[200px] mt-auto items-center`} > 
-          { status === 200 ? 
-          <span><AlertTitle><b>Success</b></AlertTitle>Paciente atualizado!</span> : 
-          status === 500 ? 
-          <span><AlertTitle><b>Error</b></AlertTitle>CPF deve ser único</span> : <span><AlertTitle><b>Error</b></AlertTitle>{dataErrors}</span> }
-          </Alert>
-          </Collapse> : null
-        }
+      { status ?
+        <ToastComponent icon={status === 200 ? <CheckCircle size={32}/> : <XCircle size={32}/>} title={status === 200 ? 'Success' : 'Error'} disc={status === 200 ? 'Patient Updated!': status === 500 ? 'CPF must be unique' : String(dataErrors)} oFunc={open} cFunc={setOpen}/>
+        : null
+      }
     </div>
   )
 }

@@ -18,7 +18,7 @@ export default function ViewEmployee(){
   }, [])
   return (
     <div className='w-full xl:px-8 lg:px-6 px-4 py-2'>
-      <div className='grid grid-cols-6 p-2 rounded-t-lg font-semibold text-sm text-center items-center bg-slate-700'>
+      <div className='grid grid-cols-6 p-2 rounded-t-lg font-semibold xl:text-lg text-sm text-center items-center bg-slate-700'>
         <div>Nome</div>
         <div>CPF</div>
         <div>Data de nascimento</div>

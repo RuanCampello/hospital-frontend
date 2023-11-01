@@ -1,32 +1,34 @@
 import { useState } from "react";
 import FormField from "../formField";
 import { Alert, AlertTitle, Collapse, IconButton } from "@mui/material";
-import { XCircle } from "@phosphor-icons/react";
+import { CheckCircle, XCircle } from "@phosphor-icons/react";
+import { hospitalId, hospitalName, hospitalCnpj, hospitalAddress, hospitalNumber } from "@/atoms/updateHospitalAtom";
+import { useRecoilState } from "recoil";
+import ToastComponent from "../toast";
 
 export default function PutHospitalView() {
   const [id, setId] = useState(null)
   const [status, setStatus] = useState(Number)
   const [open, setOpen] = useState(false)
-  const [dataErrors, setDataErrors] = useState(false)
+  const [dataErrors, setDataErrors] = useState(null)
   const [respo, setRespo] = useState(null)
 
-  const idSession = localStorage.getItem('id')
-  
+  const [hId, setHospitalId] = useRecoilState(hospitalId)
+  const [hName, setHospitalName] = useRecoilState(hospitalName)
+  const [hCnpj, setHospitalCnpj] = useRecoilState(hospitalCnpj)
+  const [hAddress, setHospitalAddress] = useRecoilState(hospitalAddress)
+  const [hNumber, setHospitalNumber] = useRecoilState(hospitalNumber)
+ 
   async function putHospital() {
-    const nameSession = localStorage.getItem('name')
-    const addressSession = localStorage.getItem('address')
-    const cnpjSession = localStorage.getItem('cnpj')
-    const numberSession = localStorage.getItem('phone number')
-
-    const response = await fetch(`http://localhost:8080/hospital/${idSession}`, {
+    const response = await fetch(`http://localhost:8080/hospital/${hId}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        id: idSession,
-        name: nameSession,
-        address: addressSession,
-        cnpj: cnpjSession,
-        number: numberSession
+        id: hId,
+        name: hName,
+        address: hAddress,
+        cnpj: hCnpj,
+        number: hNumber
       })
     })    
     const data = await response.json()
@@ -47,29 +49,19 @@ export default function PutHospitalView() {
     <div>
       <form className='py-16 xl:px-[400px] px-16' onSubmit={handleSubmit}>
         <div className='grid md:grid-cols-2 md:gap-6'>
-          <FormField name={'name'} dName={'Name'} isDefault={true} />
-          <FormField name={'cnpj'} dName={'CNPJ'} isDefault={true} />
+          <FormField id={1} func={setHospitalName} dName={'Name'} isDefault={true} />
+          <FormField id={2} func={setHospitalCnpj} dName={'CNPJ'} isDefault={true} />
         </div>
         <div className='grid md:grid-cols-2 md:gap-6 mt-6'>
-          <FormField name={'address'} dName={'Address'} isDefault={true}/>
-          <FormField name={'phone number'} dName={'Phone number'} isDefault={true}/>
+          <FormField id={3} func={setHospitalAddress} dName={'Address'} isDefault={true}/>
+          <FormField id={4} func={setHospitalNumber} dName={'Phone number'} isDefault={true}/>
         </div>
         <button className='bg-teal-600 text-md font-semibold px-6 p-3 hover:bg-teal-700 float-right rounded-full' type='submit'>Submit</button>
       </form>
-      {respo ?
-          <Collapse in={open}>
-          <Alert color={status === 200 ? 'success' : 'error'} severity={status === 200 ? 'success' : 'error'} variant='filled' action={
-            <IconButton aria-label='close' color='inherit' onClick={()=> {setOpen(false)}}>
-              <XCircle className='mb-1' weight='duotone'/>
-            </IconButton>
-          } className={`xl:w-96 float-right mx-16 xl:me-[400px] mt-auto items-center`} > 
-          { status === 200 ? 
-          <span><AlertTitle><b>Success</b></AlertTitle>Hospital atualizado!</span> : 
-          status === 500 ? 
-          <span><AlertTitle><b>Error</b></AlertTitle>CNPJ deve ser único</span> : <span><AlertTitle><b>Error</b></AlertTitle>{dataErrors}</span> }
-          </Alert>
-          </Collapse> : null
-        }
+      { status ?
+        <ToastComponent icon={status === 200 ? <CheckCircle size={32}/> : <XCircle size={32}/>} title={status === 200 ? 'Success' : 'Error'} disc={status === 200 ? 'Hospital Updated!': status === 500 ? 'CNPJ must be unique' : String(dataErrors)} oFunc={open} cFunc={setOpen}/>
+        : null
+      }
     </div>
   )
 }
