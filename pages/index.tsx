@@ -10,6 +10,7 @@ import PutPatientView from "./components/views/putPatientView";
 import ViewEmployee from "./components/views/viewEmployee";
 import PutEmployeeView from "./components/views/putEmployeeView";
 import Homepage from "./components/views/homepage";
+import AddEmployeeView from "./components/views/addEmployeeView";
 
 export default function Home() {
   const [viewS, setViewState] = useRecoilState(viewState)
@@ -26,6 +27,7 @@ export default function Home() {
             {viewS === 'putPatientView' && <PutPatientView/>}
             {viewS === 'getEmployeeView' && <ViewEmployee/>}
             {viewS === 'putEmployeeView' && <PutEmployeeView/>} 
+            {viewS === 'addEmployeeView' && <AddEmployeeView/>}
             {viewS === 'home' && <Homepage/>}
           </div>
         </div>

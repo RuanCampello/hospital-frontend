@@ -1,10 +1,12 @@
 import { viewState } from "@/atoms/viewAtom"
 import { Alert, AlertTitle, Collapse, IconButton } from "@mui/material"
-import { XCircle } from "@phosphor-icons/react"
-import { useState } from "react"
+import { CheckCircle, XCircle } from "@phosphor-icons/react"
+import { useEffect, useState } from "react"
 import { useRecoilState } from "recoil"
-import FuncButton from "./funcButtons"
+import FuncButton from "../funcButtons"
 import { patientId, patientName, patientDate, patientCpf, patientPersonalNumber, patientResponsibleNumber } from "@/atoms/updatePatientAtom"
+import { actionState } from "@/atoms/actionAtom"
+import ToastComponent from "../toast"
 
 interface PatientItemProps {
   id: string,
@@ -31,6 +33,7 @@ export default function PatientItem({id, cpf, name, date, personalNumber, respon
   const [status, setStatus] = useState(Number)
   const [viewS, setViewState] = useRecoilState(viewState)
   const [open, setOpen] = useState(false)
+  const [actionS, setActionState] = useRecoilState(actionState)
 
   const [pId, setPatientId] = useRecoilState(patientId)
   const [pName, setPatientName] = useRecoilState(patientName)
@@ -58,7 +61,9 @@ export default function PatientItem({id, cpf, name, date, personalNumber, respon
   }
   function handleDelete() {
     delPatient(id)
+    setOpen(false)
     setOpen(true)
+    setActionState(true)
   }
   return (
     <div>
@@ -77,19 +82,7 @@ export default function PatientItem({id, cpf, name, date, personalNumber, respon
     </div>
   </div>
     {status ?
-      <Collapse in={open}>
-      <Alert color={status === 200 ? 'success' : 'error'} severity={status === 200 ? 'success' : 'error'} variant='filled' action={
-        <IconButton aria-label='close' color='inherit' onClick={()=> {setOpen(false)}}>
-          <XCircle className='mb-1' weight='duotone'/>
-        </IconButton>
-      } className={`xl:w-96 float-right  my-8 items-center`} > 
-      { 
-        status === 200 ? 
-        <span><AlertTitle><b>Success</b></AlertTitle>Paciente Excluido!</span> :
-        <span><AlertTitle><b>Error</b></AlertTitle>Paciente não existe</span>
-      }
-      </Alert>
-      </Collapse> 
+    <ToastComponent icon={status !== 200 ? <CheckCircle size={32}/> : <XCircle size={32}/>} title={status === 200 ? 'Success' : 'Error'} disc={status === 200 ? 'Patient deleted!' : 'Patient does not exist'} oFunc={open} cFunc={setOpen}/>
     :null}
   </div>
   )

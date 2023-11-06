@@ -1,8 +1,12 @@
 import { useState } from "react"
-import FuncButton from "./funcButtons"
+import FuncButton from "../funcButtons"
 import { useRecoilState } from "recoil"
 import { viewState } from "@/atoms/viewAtom"
 import { formatDate } from "./patientItem"
+import { employeeCpf, employeeDate, employeeFunction, employeeId, employeeName, employeeNumber } from "@/atoms/updateEmployeeAtom"
+import ToastComponent from "../toast"
+import { CheckCircle, XCircle } from "@phosphor-icons/react"
+import { actionState } from "@/atoms/actionAtom"
 
 interface EmployeeItemProps {
   id: string,
@@ -14,7 +18,15 @@ interface EmployeeItemProps {
 }
 
 export default function EmployeeItem({id, name, cpf, date, number, func}: EmployeeItemProps) {
+  const [eId, setEmployeeId] = useRecoilState(employeeId)
+  const [eName, setEmployeeName] = useRecoilState(employeeName)
+  const [eCpf, setEmployeeCpf] = useRecoilState(employeeCpf)
+  const [eDate, setEmployeeDate] = useRecoilState(employeeDate)
+  const [eNumber, setEmployeeNumber] = useRecoilState(employeeNumber)
+  const [eFunc, setEmployeeFunction] = useRecoilState(employeeFunction)
+
   const [open, setOpen] = useState(false)
+  const [actionS, setActionState] = useRecoilState(actionState)
   const [viewS, setViewState] = useRecoilState(viewState)
   const [status, setStatus] = useState(Number)
   
@@ -28,16 +40,17 @@ export default function EmployeeItem({id, name, cpf, date, number, func}: Employ
   }
   function handleDelete() { 
     delEmployee(id)
+    setOpen(false)
     setOpen(true)
+    setActionState(true)
   }
   function handlePut() {
-    localStorage.setItem('idEmployee', id)
-    localStorage.setItem('nameEmployee', name)
-    localStorage.setItem('cpfEmployee', cpf)
-    localStorage.setItem('dateEmployee', String(date))
-    localStorage.setItem('numberEmployee', number)
-    localStorage.setItem('funcEmployee', func)
-
+    setEmployeeId(id)
+    setEmployeeName(name)
+    setEmployeeCpf(cpf)
+    setEmployeeDate(String(date))
+    setEmployeeNumber(number)
+    setEmployeeFunction(func)
     setViewState('putEmployeeView')
   }
   return (
@@ -52,6 +65,9 @@ export default function EmployeeItem({id, name, cpf, date, number, func}: Employ
           <FuncButton funcDelete={handleDelete} funcPut={handlePut}/>
         </div>
       </div>
+      {status ?
+    <ToastComponent icon={status !== 200 ? <CheckCircle size={32}/> : <XCircle size={32}/>} title={status === 200 ? 'Success' : 'Error'} disc={status === 200 ? 'Employee deleted!' : 'Employee does not exist'} oFunc={open} cFunc={setOpen}/>
+    :null}
     </div>
   )
 }

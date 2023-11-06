@@ -42,13 +42,13 @@ export default function AddPatientView() {
     <div>
       <form className='py-16 xl:px-[150px] px-16' onSubmit={handleSubmit}>
         <div className='grid md:grid-cols-2 md:gap-6'>
-          <FormField func={setName} name={'Nome'} dName={'Nome'} />
-          <FormField func={setCpf} name={'CPF'} dName={'CPF'} />
+          <FormField func={setName} dName={'Nome'} />
+          <FormField func={setCpf} dName={'CPF'} />
         </div>
         <div className='grid md:grid-cols-3 md:gap-6 mt-6'>
-          <FormField func={setDate} name={'Data de nascimento'} type={'date'} dName={'Data de nascimento'} />
-          <FormField func={setPNumber} name={'Número pessoal'} dName={'Número pessoal'} />
-          <FormField func={setRNumber} name={'Número do responsável'} dName={'Número do responsável'} />
+          <FormField func={setDate} type={'date'} dName={'Data de nascimento'} />
+          <FormField func={setPNumber} dName={'Número pessoal'} />
+          <FormField func={setRNumber} dName={'Número do responsável'} />
         </div>
         <button className='bg-teal-600 text-md font-semibold px-6 p-3 hover:bg-teal-700 float-right rounded-full' type='submit'>Submit</button>
       </form>

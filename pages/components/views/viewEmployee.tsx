@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
-import EmployeeItem from "../employeeItem"
-import FuncButton from "../funcButtons"
+import EmployeeItem from "../subitems/employeeItem"
+import { useRecoilState } from "recoil"
+import { actionState } from "@/atoms/actionAtom"
 
 export default function ViewEmployee(){
+  const [actionS, setActionState] = useRecoilState(actionState)
   const [employees, setEmployees] = useState([])
   async function getEmployees() {
     const response = await fetch(`http://localhost:8080/employee/all`, {
@@ -16,6 +18,12 @@ export default function ViewEmployee(){
   useEffect(()=> {
     getEmployees()
   }, [])
+  setInterval(()=> {
+    if(actionS) {
+      getEmployees()
+      setActionState(false)
+    }
+  }, 1500)
   return (
     <div className='w-full xl:px-8 lg:px-6 px-4 py-2'>
       <div className='grid grid-cols-6 p-2 rounded-t-lg font-semibold xl:text-lg text-sm text-center items-center bg-slate-700'>

@@ -24,7 +24,6 @@ export default function AddHospitalView() {
       })
     })
     const data = await response.json()
-    
     setStatus(response.status)
     console.log(status)
     if(data!['errors'] !== undefined && data){
@@ -41,21 +40,18 @@ export default function AddHospitalView() {
     <div>
       <form className='py-16 xl:px-[150px] px-16' onSubmit={handleSubmit}>
         <div className='grid md:grid-cols-2 md:gap-6'>
-          <FormField dName="Nome" func={setName} name={'Name'} isDefault={false} />
-          <FormField dName="CNPJ" func={setCnpj} name={'CNPJ'} isDefault={false} />
+          <FormField dName="Nome" func={setName} isDefault={false} />
+          <FormField dName="CNPJ" func={setCnpj} isDefault={false} />
         </div>
         <div className='grid md:grid-cols-2 md:gap-6 mt-6'>
-          <FormField dName="Endereço" func={setAddress} name={'Address'} isDefault={false} />
-          <FormField dName="Telefone" func={setNumber} name={'Phone number'} isDefault={false} />
+          <FormField dName="Endereço" func={setAddress} isDefault={false} />
+          <FormField dName="Telefone" func={setNumber} isDefault={false} />
         </div>
         <button className='bg-teal-600 text-md font-semibold px-6 p-3 hover:bg-teal-700 float-right rounded-full' type='submit'>Submit</button>
       </form>
       {respo ?
         <ToastComponent oFunc={open} cFunc={setOpen} icon={status === 201 ? <CheckCircle size={32}/> : <XCircle size={32}/>} title={status === 201 ? 'Success' : 'Error'} disc={status === 201 ? 'Hospital Registered!' : status === 500 ? 'CNPJ must be unique' : String(dataErrors)
-      }/> 
-        
-        
-        : null
+      }/> : null
       }
     </div>
   )

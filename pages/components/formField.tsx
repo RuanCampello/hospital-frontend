@@ -1,3 +1,4 @@
+import { employeeId, employeeName, employeeCpf, employeeDate, employeeNumber, employeeFunction } from "@/atoms/updateEmployeeAtom"
 import { hospitalId, hospitalName, hospitalCnpj, hospitalAddress, hospitalNumber } from "@/atoms/updateHospitalAtom"
 import { patientId, patientName, patientDate, patientCpf, patientPersonalNumber, patientResponsibleNumber } from "@/atoms/updatePatientAtom"
 import { useRecoilState } from "recoil"
@@ -21,8 +22,14 @@ export default function FormField({id, dName, type = 'text', isDefault = false, 
   const [pCpf, setPatientCpf] = useRecoilState(patientCpf)
   const [pPNumber, setPatientPersonalNumber] = useRecoilState(patientPersonalNumber)
   const [pRNumber, setPatientResponsibleNumber] = useRecoilState(patientResponsibleNumber)
+  const [eId, setEmployeeId] = useRecoilState(employeeId)
+  const [eName, setEmployeeName] = useRecoilState(employeeName)
+  const [eCpf, setEmployeeCpf] = useRecoilState(employeeCpf)
+  const [eDate, setEmployeeDate] = useRecoilState(employeeDate)
+  const [eNumber, setEmployeeNumber] = useRecoilState(employeeNumber)
+  const [eFunc, setEmployeeFunction] = useRecoilState(employeeFunction)
 
-  const constArray = [hId, hName, hCnpj, hAddress, hNumber, pId, pName, pDate, pCpf, pPNumber, pRNumber]
+  const constArray = [hId, hName, hCnpj, hAddress, hNumber, pId, pName, pDate, pCpf, pPNumber, pRNumber, eId, eName, eCpf, eDate, eNumber, eFunc]
   return (
     <div className="relative z-0 w-full mb-6 group">
       { isDefault && id && func ? <input onChange={(event) => func(event.target.value)}

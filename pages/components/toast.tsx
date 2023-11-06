@@ -23,7 +23,7 @@ export default function ToastComponent({icon, oFunc, cFunc, title, disc = 'ok'}:
               {icon}
             </>
           </div>
-          <div className="ml-3 text-base font-normal">
+          <div className="ml-3 text-base text-start font-normal">
               {title}
           <div className='mb-2 text-sm text-slate-400'>
               {disc}

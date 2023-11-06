@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
-import PatientItem from "../patientItem"
-import { ArrowCounterClockwise } from "@phosphor-icons/react"
+import PatientItem from "../subitems/patientItem"
+import { actionState } from "@/atoms/actionAtom"
+import { useRecoilState } from "recoil"
 
 export default function HomeView() {
   const [patients, setPatients] = useState([])
+  const [actionS, setActionState] = useRecoilState(actionState)
   async function getPatients() {
     const response = await fetch('http://localhost:8080/patient/all', {
       method: 'GET',
@@ -16,13 +18,15 @@ export default function HomeView() {
   useEffect(()=> {
     getPatients()
   }, [])
+  setInterval(() => {
+    if(actionS) {
+      getPatients()
+      setActionState(false)
+    }
+  }, 1500)
   return (
     <main className='h-full w-full xl:px-8 lg:px-6 px-4 text-center'>
-      <button className='ms-auto py-2 px-3 gap-2 m-3 hover:bg-teal-700 bg-teal-600 rounded-full font-semibold flex text-center items-center' onClick={()=> getPatients()}>
-        Recarregar Lista
-        <ArrowCounterClockwise size={28} />
-      </button>
-    <div className='grid grid-cols-6 bg-slate-700 rounded-t-xl 2xl:text-lg text-sm items-center py-2 mb-2 font-semibold lg:px-8 px-4'>
+    <div className='mt-3 grid grid-cols-6 bg-slate-700 rounded-t-xl 2xl:text-lg text-sm items-center py-2 mb-2 font-semibold lg:px-8 px-4'>
       <div className='text-start truncate'>Nome</div>
       <div>CPF</div>
       <div>Data de nascimento</div>
