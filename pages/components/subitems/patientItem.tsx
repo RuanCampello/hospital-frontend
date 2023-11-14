@@ -1,7 +1,6 @@
 import { viewState } from "@/atoms/viewAtom"
-import { Alert, AlertTitle, Collapse, IconButton } from "@mui/material"
 import { CheckCircle, XCircle } from "@phosphor-icons/react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useRecoilState } from "recoil"
 import FuncButton from "../funcButtons"
 import { patientId, patientName, patientDate, patientCpf, patientPersonalNumber, patientResponsibleNumber } from "@/atoms/updatePatientAtom"

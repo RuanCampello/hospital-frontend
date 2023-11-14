@@ -28,6 +28,9 @@ export default function Sidebar() {
       <p className='text-slate-400 text-sm'>funcionários</p>
       <SidebarItem view='getEmployeeView' title='Visualizar funcionários' icon={<Eye size={24} weight={viewS === 'getEmployeeView' ? 'fill' : 'duotone'}/>}/>
       <SidebarItem view='addEmployeeView' title='Adicionar funcionários' icon={<PlusCircle size={24} weight={viewS === 'addEmployeeView' ? 'fill' : 'duotone'}/>}/>
+      <hr className='border-slate-600'/>
+      <p className='text-slate-400 text-sm'>equipes</p>
+      <SidebarItem view='getTeamView' title='Visualizar equipes' icon={<Eye size={24} weight={viewS === 'getTeamView' ? 'fill' : 'duotone'}/>}/>
       </ul>
    </div>
 </aside>

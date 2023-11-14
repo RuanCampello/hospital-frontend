@@ -11,6 +11,7 @@ import ViewEmployee from "./components/views/viewEmployee";
 import PutEmployeeView from "./components/views/putEmployeeView";
 import Homepage from "./components/views/homepage";
 import AddEmployeeView from "./components/views/addEmployeeView";
+import ViewTeam from "./components/views/viewTeam";
 
 export default function Home() {
   const [viewS, setViewState] = useRecoilState(viewState)
@@ -28,6 +29,7 @@ export default function Home() {
             {viewS === 'getEmployeeView' && <ViewEmployee/>}
             {viewS === 'putEmployeeView' && <PutEmployeeView/>} 
             {viewS === 'addEmployeeView' && <AddEmployeeView/>}
+            {viewS === 'getTeamView' && <ViewTeam/>}
             {viewS === 'home' && <Homepage/>}
           </div>
         </div>
