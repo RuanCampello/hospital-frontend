@@ -23,14 +23,15 @@ export default function Sidebar() {
       <hr className='border-slate-600'/>
       <p className='text-slate-400 text-sm'>paciente</p>
       <SidebarItem view='getPatientView' title='Visualizar pacientes' icon={<Eye size={24} weight={viewS === 'getPatientView' ? 'fill' : 'duotone'}/>}/>
-      <SidebarItem view='addPatientView' title='Adicionar pacientes' icon={<PlusCircle size={24} weight={viewS === 'addPatientView' ? 'fill' : 'duotone'}/>}/>
+      <SidebarItem view='addPatientView' title='Adicionar paciente' icon={<PlusCircle size={24} weight={viewS === 'addPatientView' ? 'fill' : 'duotone'}/>}/>
       <hr className='border-slate-600'/>
       <p className='text-slate-400 text-sm'>funcionários</p>
       <SidebarItem view='getEmployeeView' title='Visualizar funcionários' icon={<Eye size={24} weight={viewS === 'getEmployeeView' ? 'fill' : 'duotone'}/>}/>
-      <SidebarItem view='addEmployeeView' title='Adicionar funcionários' icon={<PlusCircle size={24} weight={viewS === 'addEmployeeView' ? 'fill' : 'duotone'}/>}/>
+      <SidebarItem view='addEmployeeView' title='Adicionar funcionário' icon={<PlusCircle size={24} weight={viewS === 'addEmployeeView' ? 'fill' : 'duotone'}/>}/>
       <hr className='border-slate-600'/>
       <p className='text-slate-400 text-sm'>equipes</p>
       <SidebarItem view='getTeamView' title='Visualizar equipes' icon={<Eye size={24} weight={viewS === 'getTeamView' ? 'fill' : 'duotone'}/>}/>
+      <SidebarItem view='addTeamView' title='Adicionar equipe' icon={<PlusCircle size={24} weight={viewS === 'addTeamView' ? 'fill' : 'duotone'}/>}/>
       </ul>
    </div>
 </aside>
