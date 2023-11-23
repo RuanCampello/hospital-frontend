@@ -35,7 +35,7 @@ export default function ViewTeam() {
         {
           teams?.map((team) => {
             return (
-              <div key={team['funcionario_id']}>
+              <div key={team['id']}>
                 <TeamItem id={team['id']} name={team['name']} funcList={team['funcionarioList']}/>
               </div>
             )

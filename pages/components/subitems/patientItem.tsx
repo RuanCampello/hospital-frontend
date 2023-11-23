@@ -16,7 +16,7 @@ interface PatientItemProps {
   responsibleNumber: string
 }
 
-export function formatDate(date: Date) {
+export function formatDate(date: any) {
   let data = String(date).replaceAll('-','')
   console.log(date, data)
   let year = data.substring(0,4)

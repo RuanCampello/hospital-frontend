@@ -13,7 +13,6 @@ export default function ViewEmployee(){
     })
     const data = await response.json()
     setEmployees(data)
-    console.log(data)
   }
   useEffect(()=> {
     getEmployees()

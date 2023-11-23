@@ -2,6 +2,7 @@ import { employeeId, employeeName, employeeCpf, employeeDate, employeeNumber, em
 import { hospitalId, hospitalName, hospitalCnpj, hospitalAddress, hospitalNumber } from "@/atoms/updateHospitalAtom"
 import { patientId, patientName, patientDate, patientCpf, patientPersonalNumber, patientResponsibleNumber } from "@/atoms/updatePatientAtom"
 import { useRecoilState } from "recoil"
+import { formatDate } from "./subitems/patientItem"
 
 interface FormFieldProps {
   dName: string,
@@ -33,7 +34,7 @@ export default function FormField({id, dName, type = 'text', isDefault = false, 
   return (
     <div className="relative z-0 w-full mb-6 group">
       { isDefault && id && func ? <input onChange={(event) => func(event.target.value)}
-        type={type} name={dName} id={dName} className="block py-2.5 px-0 w-full text-sm text-slate-200 bg-transparent border-0 border-b-2 appearance-none border-gray-700 focus:outline-none focus:ring-0 focus:border-slate-800 peer" defaultValue={constArray[id]} required /> :
+        type={type} name={dName} id={dName} className="block py-2.5 px-0 w-full text-sm text-slate-200 bg-transparent border-0 border-b-2 appearance-none border-gray-700 focus:outline-none focus:ring-0 focus:border-slate-800 peer" defaultValue={constArray[id]} required/> :
         <input onChange={(e) => func!(e.target.value)}
          type={type} name={dName} id={dName} className="block py-2.5 px-0 w-full text-sm text-slate-200 bg-transparent border-0 border-b-2 appearance-none border-gray-700 focus:outline-none focus:ring-0 focus:border-slate-800 peer" placeholder=" " required />
       }
