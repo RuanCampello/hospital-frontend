@@ -15,6 +15,7 @@
     "@mui/material": "^5.14.11",
     "@phosphor-icons/react": "^2.0.13",
     "bootstrap": "^5.3.2",
+    "cleave.js": "^1.6.0",
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.6.4",
     "next": "^13.5.4",
@@ -24,6 +25,7 @@
     "recoil": "^0.7.7"
   },
   "devDependencies": {
+    "@types/cleave.js": "^1.4.12",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",

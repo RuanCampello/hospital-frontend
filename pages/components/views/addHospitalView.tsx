@@ -2,6 +2,8 @@ import { useState } from "react";
 import FormField from "../formField"
 import { CheckCircle, XCircle } from "@phosphor-icons/react";
 import ToastComponent from "../toast";
+import Cleave from 'cleave.js/react'
+
 export default function AddHospitalView() {
   const [name, setName] = useState(null)
   const [cnpj, setCnpj] = useState(null)

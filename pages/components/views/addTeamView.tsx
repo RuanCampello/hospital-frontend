@@ -8,6 +8,8 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Chip from '@mui/material/Chip';
+import { CheckCircle, XCircle } from '@phosphor-icons/react';
+import ToastComponent from '../toast';
 
 export default function AddTeamView() {
   const [name, setName] = useState(null)
@@ -146,6 +148,10 @@ export default function AddTeamView() {
     </div>
     <button className='bg-teal-600 text-md font-semibold px-6 p-3 hover:bg-teal-700 float-right rounded-full mt-5' type='submit'>Submit</button>
     </form>
+    {data ?
+        <ToastComponent oFunc={open} cFunc={setOpen} icon={status === 201 ? <CheckCircle size={32}/> : <XCircle size={32}/>} title={status === 201 ? 'Success' : 'Error'} disc={status === 201 ? 'Team Registered!' : String(dataErrors)
+      }/> : null
+      }
     </div>
   )
 }

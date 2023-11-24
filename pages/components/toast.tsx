@@ -1,7 +1,6 @@
 'use client';
 import { Toast } from 'flowbite-react'
 import Icon from "@phosphor-icons/react"
-import { useState } from 'react';
 
 interface ToastComponentProps {
   title: string,
