@@ -10,6 +10,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Chip from '@mui/material/Chip';
 import { CheckCircle, XCircle } from '@phosphor-icons/react';
 import ToastComponent from '../toast';
+import { ListItemText } from '@mui/material';
+import { Checkbox } from 'flowbite-react';
 
 export default function AddTeamView() {
   const [name, setName] = useState(null)
@@ -18,10 +20,9 @@ export default function AddTeamView() {
   const [data, setData] = useState(null)
   const [dataErrors, setDataErrors] = useState(null)
   const [open, setOpen] = useState(false)
-  const [options, setOptions] = useState(Array())
   const [employees, setEmployees] = useState([])
   const [teams, setTeams] = useState([])
-  
+
   async function getEmployees() {
     const response = await fetch(`http://localhost:8080/employee/all`, {
       method: 'GET',
@@ -37,16 +38,11 @@ export default function AddTeamView() {
         employees.map((emp) => {
           const name = emp['name']
           if(name === employeeName) employees.splice(name, 1)
-        })
+        }) //get only employee without a team
       }
     })    
   }
   setUnemployeesList()
-  function setEmployee(name: String) {
-    employees.map((emp) => {
-      if(emp['name'] === name) fList.push(emp)
-    })
-  }
   async function getTeams() {
     const response = await fetch('http://localhost:8080/team/all', {
       method: 'GET',
@@ -68,7 +64,7 @@ export default function AddTeamView() {
       style: {
         maxHeight: 48 * 4.5 + 8,
         width: 250}}
-      }
+  }
   const theme = useTheme()
 
   async function addTeam() {
@@ -90,15 +86,21 @@ export default function AddTeamView() {
     addTeam()
     setOpen(true)
   }
-  const handleSelect = (e: any) => {
-    const value = e.target.value[0][0]['name']
-    setOptions(typeof value === 'string' ? value.split(',') : value,)
+  function setEmployee(name: String) {
+    employees.map((emp) => {
+      if(emp['name'] === name) fList.push(emp)
+    })
+  }  
+  const [options, setOptions] = useState<string[]>([]);
+  const handleChange = (event: SelectChangeEvent<typeof options>) => {
+    const {
+      target: { value },
+    } = event;
+    setOptions(typeof value === 'string' ? value.split(',') : value)
   }
-  const handleChange = (e: any) => {
-    const value = e.target.value
-    const name = value[0][0]['name']
-    if(name) setEmployee(String(name))
-  }
+  const handleSelect = (event: any) => {
+    setEmployee(String(event.target.value))
+  }  
   const labelStyle = {
     color: 'rgb(226,232,240)',
     background: 'rgb(30,41,59)',
@@ -108,43 +110,38 @@ export default function AddTeamView() {
     getEmployees()
     getTeams()
   }, [])
+  console.log(fList) // verify on set employee if its already on it
+  // change the function to search options names/ids in the employees array
+  // so it will be need just to call the func on post
+  
   return (
     <div>
       <form className='py-16 xl:px-[150px] px-16' onSubmit={handleSubmit}>
         <div className='grid md:grid-cols-2 md:gap-6'>
           <FormField func={setName} dName={'Nome'} isDefault={false}/>
-        <FormControl className='w-full rounded-lg h-fit'>
-        <InputLabel id='demo-multiple-chip-label' style={labelStyle}>Selecione os funcionários da equipe</InputLabel>
-        <Select
-          labelId='demo-multiple-chip-label'
-          id='demo-multiple-chip'
-          multiple
-          value={options ? options : []}
-          onChange={(e) => {
-            handleChange(e)
-            handleSelect(e)
-          }}
-          input={<OutlinedInput id='select-multiple-chip' label='Chip' />}
-          className='bg-slate-800 text-slate-600'
-          renderValue={(selected) => (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-              {selected.map((value) => (
-                <Chip style={{color: 'white', background: 'rgb(71,85,105)'}} key={value} label={value} />
-              ))}
-            </Box>
-          )}
-          MenuProps={MenuProps}>
-          {employees.map((employee) => (
-            <MenuItem
-              key={employee['id']}
-              value={[employee]}
-              //style={{background: 'rgb(71,85,105)'}}
-              style={getStyles(employee, options, theme)}>
-              {employee['name']}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+  <FormControl sx={{ m: 1, width: 300 }}>
+    <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+    <Select
+      labelId="demo-multiple-checkbox-label"
+      id="demo-multiple-checkbox"
+      multiple
+      value={options}
+      onChange={(e) => {
+        handleChange(e)
+        handleSelect(e)
+      }}
+      input={<OutlinedInput label="Tag" />}
+      renderValue={(selected) => selected.join(', ')}
+      MenuProps={MenuProps}
+    >
+      {employees.map((employee) => (
+        <MenuItem key={employee['id']} value={employee['name']}>
+          <Checkbox checked={options.indexOf(employee['name']) > -1} />
+          <ListItemText primary={employee['name']} />
+        </MenuItem>
+      ))}
+    </Select>
+  </FormControl>
     </div>
     <button className='bg-teal-600 text-md font-semibold px-6 p-3 hover:bg-teal-700 float-right rounded-full mt-5' type='submit'>Submit</button>
     </form>

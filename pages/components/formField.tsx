@@ -3,6 +3,7 @@ import { hospitalId, hospitalName, hospitalCnpj, hospitalAddress, hospitalNumber
 import { patientId, patientName, patientDate, patientCpf, patientPersonalNumber, patientResponsibleNumber } from "@/atoms/updatePatientAtom"
 import { useRecoilState } from "recoil"
 import { formatDate } from "./subitems/patientItem"
+import { teamId, teamName, teamFunct } from "@/atoms/updateTeamAtom"
 
 interface FormFieldProps {
   dName: string,
@@ -29,8 +30,11 @@ export default function FormField({id, dName, type = 'text', isDefault = false, 
   const [eDate, setEmployeeDate] = useRecoilState(employeeDate)
   const [eNumber, setEmployeeNumber] = useRecoilState(employeeNumber)
   const [eFunc, setEmployeeFunction] = useRecoilState(employeeFunction)
+  const [tId, setTeamId] = useRecoilState(teamId)
+  const [tName, setTeamName] = useRecoilState(teamName)
+  const [tFunc, setTeamFunc] = useRecoilState(teamFunct)
 
-  const constArray = [hId, hName, hCnpj, hAddress, hNumber, pId, pName, pDate, pCpf, pPNumber, pRNumber, eId, eName, eCpf, eDate, eNumber, eFunc]
+  const constArray = [hId, hName, hCnpj, hAddress, hNumber, pId, pName, pDate, pCpf, pPNumber, pRNumber, eId, eName, eCpf, eDate, eNumber, eFunc, tId, tName, tFunc]  
   return (
     <div className="relative z-0 w-full mb-6 group">
       { isDefault && id && func ? <input onChange={(event) => func(event.target.value)}

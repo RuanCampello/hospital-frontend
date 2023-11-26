@@ -1,6 +1,6 @@
 import { useState } from "react"
 import FuncButton from "../funcButtons"
-import { useRecoilState } from "recoil"
+import { useRecoilState, useSetRecoilState } from "recoil"
 import { actionState } from "@/atoms/actionAtom"
 import { CheckCircle, XCircle } from "@phosphor-icons/react"
 import ToastComponent from "../toast"
@@ -21,6 +21,7 @@ export default function TeamItem({id, name, funcList}:TeamItemProps) {
   const [tFunc, setTeamFunc] = useRecoilState(teamFunct)
   const [viewS, setViewState] = useRecoilState(viewState)
   const [actionS, setActionState] = useRecoilState(actionState)
+  const [funcName, setFuncName] = useState('')
 
   async function delTeam(id: String) {
     const response = await fetch(`http://localhost:8080/team/${id}`, {
@@ -28,13 +29,24 @@ export default function TeamItem({id, name, funcList}:TeamItemProps) {
       headers: {'Content-Type': 'application/json'},
     })
     setStatus(response.status)
-  }  
+  }
+
   function handlePut() {
     setTeamId(id)
     setTeamName(name)
+    //setTeamFunc(tFunc => [...tFunc])
     //setTeamFunc(funcList) get it to work!
-    
+    // setTeamFunc((currentState) => [
+    //   ...currentState,
+    //   //newTeam,
+    // ]);
+    // let newTeam = [...tFunc].map((item) => {
+    //   return item
+    // })
+    // setTeamFunc(newTeam)
+    setTeamFunc(funcList)
     setViewState('putTeamView')
+    console.log(tFunc);
   }
   function handleDelete() {
     setActionState(true)
@@ -43,7 +55,7 @@ export default function TeamItem({id, name, funcList}:TeamItemProps) {
   }
   return (
     <div>
-      <div className='grid grid-cols-7 py-2 items-center px-4 lg:px-8 xl:text-lg text-xs'>
+      <div className='grid grid-cols-8 py-2 items-center px-4 lg:px-8 xl:text-lg text-xs'>
         <div>{name}</div>
         <div className='col-span-5'>
         {
@@ -56,7 +68,7 @@ export default function TeamItem({id, name, funcList}:TeamItemProps) {
           })  
         }
         </div>
-        <div className='col-span-1 flex justify-around'>
+        <div className='col-span-2 flex justify-around'>
           <FuncButton funcPut={handlePut} funcDelete={handleDelete}/>
         </div>
       </div>
