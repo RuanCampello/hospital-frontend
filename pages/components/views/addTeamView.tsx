@@ -12,7 +12,7 @@ import ToastComponent from '../toast';
 import { Checkbox, ListItemText } from '@mui/material';
 
 interface Employee {
-  id: number
+  id: string
   cpf: string
   date: Date
   function: string
@@ -44,6 +44,7 @@ export default function AddTeamView() {
   const [employees, setEmployees] = useState<Employee[]>([])
   const [teams, setTeams] = useState<Team[]>([])
   const [options, setOptions] = useState<string[]>([])
+  const idToNameMap = new Map<string, string>()
 
   async function getEmployees() {
     const response = await fetch(`http://localhost:8080/employee/all`, {
@@ -95,27 +96,20 @@ export default function AddTeamView() {
     addTeam()
     setOpen(true)
   }
-  const setEmployeeList = () => {
-    // setting array that will be sent to api post
-    const updatedList: Employee[] = [...fList]
-    employees.forEach((emp) => {
-      updatedList.push({
-        id: emp.id,
-        cpf: emp.cpf,
-        date: emp.date,
-        function: emp.function,
-        name: emp.name,
-        personal_number: emp.personal_number,
-      })
-    })
-    setFList(updatedList) 
-  }
+  useEffect(() => {
+    const uniqueOptionIds = new Set(options) // get the unique ids on options
+    const updatedList: Employee[] = employees.filter((emp) => uniqueOptionIds.has(emp.id)) // filter employees only with same id as its in options
+    // filter out employees already present in fList
+    const uniqueUpdatedList = updatedList.filter((emp) => !fList.some((existingEmp) => existingEmp.id === emp.id))
+    // update fList state by combining existing fList with the unique updated list
+    setFList((prevFList) => [...prevFList, ...uniqueUpdatedList])
+  }, [options])
+
   const handleChange = (event: SelectChangeEvent<typeof options>) => {
     const {
       target: { value },
     } = event;
     setOptions(typeof value === 'string' ? value.split(',') : value)
-    setEmployeeList()
   }
   useEffect(() => {
     // fetch employees and teams
@@ -145,19 +139,25 @@ export default function AddTeamView() {
       className='bg-slate-800 text-slate-600'
       renderValue={(selected) => (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75 }}>
-          {selected.map((value) => (
-            <Chip style={{color: 'white', background: 'rgb(71,85,105)'}} key={value} label={value} />
+          {options.map((optionId) => (
+           <Chip
+           key={optionId}
+           style={{ color: 'white', background: 'rgb(71,85,105)' }}
+           label={idToNameMap.get(optionId)}
+         />
           ))}
         </Box>
       )}
-      MenuProps={MenuProps}
-    >
-      {employees.map((employee) => (
-        <MenuItem key={employee.id} value={employee.name}>
-          <Checkbox checked={options.indexOf(employee.name) > -1} />
-          <ListItemText primary={employee.name} />
-        </MenuItem>
-      ))}
+      MenuProps={MenuProps}>
+          {employees.map((employee) => {
+          idToNameMap.set(String(employee.id), employee.name);
+          return (
+            <MenuItem key={employee.id} value={employee.id}>
+              <Checkbox checked={options.includes(employee.id.toString())} />
+              <ListItemText primary={employee.name} />
+            </MenuItem>
+          )
+        })}
     </Select>
   </FormControl>
     </div>
