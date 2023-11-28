@@ -16,25 +16,25 @@ import AddTeamView from "./components/views/addTeamView";
 import PutTeamView from "./components/views/putTeamView";
 
 export default function Home() {
-  const [viewS, setViewState] = useRecoilState(viewState)
+  const [currentView, setViewState] = useRecoilState(viewState)
   return (
-      <main className='h-screen bg-slate-600'>
+      <main className='h-screen bg-police-blue-primary'>
         <Sidebar/>
         <div className='w-screen overflow-hidden'>
-          <div className='sm:ml-64'>
-            {viewS === 'getPatientView' && <ViewPatient/>}
-            {viewS === 'addHospitalView' && <AddHospitalView/>}
-            {viewS === 'putHospitalView' && <PutHospitalView/>}
-            {viewS === 'getHospitalView' && <ViewHospital/>}
-            {viewS === 'addPatientView' && <AddPatientView/>}
-            {viewS === 'putPatientView' && <PutPatientView/>}
-            {viewS === 'getEmployeeView' && <ViewEmployee/>}
-            {viewS === 'putEmployeeView' && <PutEmployeeView/>} 
-            {viewS === 'addEmployeeView' && <AddEmployeeView/>}
-            {viewS === 'getTeamView' && <ViewTeam/>}
-            {viewS === 'addTeamView' && <AddTeamView/>}
-            {viewS === 'putTeamView' && <PutTeamView/>}
-            {viewS === 'home' && <Homepage/>}
+          <div className='sm:ml-64'> 
+            {currentView === 'getPatientView' && <ViewPatient/>}
+            {currentView === 'addHospitalView' && <AddHospitalView/>}
+            {currentView === 'putHospitalView' && <PutHospitalView/>}
+            {currentView === 'getHospitalView' && <ViewHospital/>}
+            {currentView === 'addPatientView' && <AddPatientView/>}
+            {currentView === 'putPatientView' && <PutPatientView/>}
+            {currentView === 'getEmployeeView' && <ViewEmployee/>}
+            {currentView === 'putEmployeeView' && <PutEmployeeView/>} 
+            {currentView === 'addEmployeeView' && <AddEmployeeView/>}
+            {currentView === 'getTeamView' && <ViewTeam/>}
+            {currentView === 'addTeamView' && <AddTeamView/>}
+            {currentView === 'putTeamView' && <PutTeamView/>}
+            {currentView === 'home' && <Homepage/>}
           </div>
         </div>
       </main>

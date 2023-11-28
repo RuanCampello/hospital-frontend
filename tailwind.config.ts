@@ -9,6 +9,22 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        'razzmatazz': '#EE004F',
+        'bittersweet': '#FB5C59',
+        'yankees-blue': {
+          'primary': '#17273D'
+        },
+        'police-blue': {
+          'primary': '#3D5872'
+        },
+        'silver-chalice': {
+          'primary': '#F4B151'
+        },
+        'viridian-green': {
+          'primary': '#029791'
+        }
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -16,8 +32,5 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    //require('flowbite/plugin')
-  ],
 }
 export default config

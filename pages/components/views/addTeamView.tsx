@@ -11,15 +11,15 @@ import { CheckCircle, XCircle } from '@phosphor-icons/react';
 import ToastComponent from '../toast';
 import { Checkbox, ListItemText } from '@mui/material';
 
-interface Employee {
+export interface Employee {
   id: string
   cpf: string
   date: Date
-  function: string
+  func: string
   name: string
   personal_number: string
 }
-interface Team {
+export interface Team {
   name: string
   funcionarioList: Employee[]
 }
@@ -33,6 +33,18 @@ export const MenuProps = {
     style: {
       maxHeight: 48 * 4.5 + 8,
       width: 250}}
+}
+export function isEmployeeOnTeam(employeeId: string, teams: Team[]): { id: string, isOnTeam: boolean } {
+  for (const team of teams) {
+    for (const employee of team.funcionarioList) {
+      if (employee.id === employeeId) {
+        // Employee is on a team
+        return { id: employeeId, isOnTeam: true };
+      }
+    }
+  }
+  // Employee is not on any team
+  return { id: employeeId, isOnTeam: false };
 }
 export default function AddTeamView() {
   const [name, setName] = useState(null)

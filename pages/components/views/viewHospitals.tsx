@@ -25,7 +25,7 @@ export default function ViewHospital() {
   }, 1500)
   return (
     <div className='w-full xl:px-8 lg:px-6 px-4'>
-      <div className='grid grid-cols-6 p-2 font-semibold bg-slate-700 text-sm xl:text-lg rounded-t-xl text-center mt-3'>
+      <div className='grid grid-cols-6 p-2 font-semibold bg-yankees-blue-primary text-sm xl:text-lg rounded-t-xl text-center mt-3'>
         <div className='grid grid-cols-5 col-span-2'>
           <span className='col-span-1 w-8 text-end'>#</span>
           <span className='col-span-4 text-start'>Nome</span>

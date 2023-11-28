@@ -26,7 +26,7 @@ export default function HomeView() {
   }, 1500)
   return (
     <main className='h-full w-full xl:px-8 lg:px-6 px-4 text-center'>
-    <div className='mt-3 grid grid-cols-6 bg-slate-700 rounded-t-xl 2xl:text-lg text-sm items-center py-2 mb-2 font-semibold lg:px-8 px-4'>
+    <div className='mt-3 grid grid-cols-6 bg-yankees-blue-primary rounded-t-xl 2xl:text-lg text-sm items-center py-2 mb-2 font-semibold lg:px-8 px-4'>
       <div className='text-start truncate'>Nome</div>
       <div>CPF</div>
       <div>Data de nascimento</div>

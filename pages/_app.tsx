@@ -3,7 +3,7 @@ import { Manrope } from 'next/font/google'
 import type { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
 
-const manrope = Manrope({ weight: ['400', '600', '700'], subsets: ['latin']})
+const manrope = Manrope({ weight: ['400','500', '600', '700', '800'], subsets: ['latin-ext']})
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

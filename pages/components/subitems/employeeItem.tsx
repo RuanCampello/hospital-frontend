@@ -7,6 +7,7 @@ import { employeeCpf, employeeDate, employeeFunction, employeeId, employeeName, 
 import ToastComponent from "../toast"
 import { CheckCircle, XCircle } from "@phosphor-icons/react"
 import { actionState } from "@/atoms/actionAtom"
+import { isEmployeeOnTeam } from "../views/addTeamView"
 
 interface EmployeeItemProps {
   id: string,
@@ -14,10 +15,11 @@ interface EmployeeItemProps {
   cpf: string,
   date: Date,
   number: string,
-  func: string
+  func: string,
+  isOnTeam: boolean;
 }
 
-export default function EmployeeItem({id, name, cpf, date, number, func}: EmployeeItemProps) {
+export default function EmployeeItem({id, name, cpf, date, number, func, isOnTeam}: EmployeeItemProps) {
   const [eId, setEmployeeId] = useRecoilState(employeeId)
   const [eName, setEmployeeName] = useRecoilState(employeeName)
   const [eCpf, setEmployeeCpf] = useRecoilState(employeeCpf)
@@ -55,13 +57,19 @@ export default function EmployeeItem({id, name, cpf, date, number, func}: Employ
   }
   return (
     <div>
-      <div className='grid grid-cols-6 items-center text-center xl:text-lg py-2 text-sm xl:px-3'>
-        <div>{name}</div>
+      <div className='grid grid-cols-8 items-center text-center xl:text-lg text-sm'>
+        <div className='col-span-2 text-left flex items-center gap-5'>
+          <div className={`w-2 h-14 ${isOnTeam?'bg-razzmatazz':'bg-bittersweet'}`}>    
+          </div>
+          <span>
+            {name}
+          </span>
+        </div>
         <div>{cpf}</div>
         <div>{formatDate(date)}</div>
         <div>{number}</div>
-        <div>{func}</div>
-        <div>
+        <div className='col-span-2'>{func}</div>
+        <div className='flex justify-end me-2'>
           <FuncButton funcDelete={handleDelete} funcPut={handlePut}/>
         </div>
       </div>

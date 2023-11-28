@@ -54,7 +54,7 @@ export default function HospitalItem({index, name, address, number, cnpj, id}: H
   <div>
   <div className='grid grid-cols-6 xl:text-lg text-xs py-2 xl:px-3 items-center text-center'>
     <div className='col-span-2 grid grid-cols-5 items-center'>
-      <div className='xl:w-8 w-5 bg-teal-500 rounded-full xl:h-8 h-5 text-slate-700 font-bold flex justify-center items-center'>
+      <div className='xl:w-8 w-5 bg-viridian-green-primary rounded-full xl:h-8 h-5 text-police-blue-primary font-extrabold flex justify-center items-center'>
         <span className='col-span-1'>{index+1}</span>
         </div>
       <span className='col-span-4 text-start'>{name}</span>
