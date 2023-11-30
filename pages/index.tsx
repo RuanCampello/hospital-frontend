@@ -21,7 +21,7 @@ export default function Home() {
       <main className='h-screen bg-police-blue-primary'>
         <Sidebar/>
         <div className='w-screen overflow-hidden'>
-          <div className='sm:ml-64'> 
+          <div className='sm:ml-72'> 
             {currentView === 'getPatientView' && <ViewPatient/>}
             {currentView === 'addHospitalView' && <AddHospitalView/>}
             {currentView === 'putHospitalView' && <PutHospitalView/>}

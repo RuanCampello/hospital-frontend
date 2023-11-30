@@ -82,7 +82,7 @@ export default function ViewEmployee () {
           </div>
         )
       )}
-      <div className='absolute bottom-6 bg-yankees-blue-primary rounded-md px-2 p-1 left-72'>
+      <div className='absolute bottom-6 bg-yankees-blue-primary rounded-md px-2 p-1'>
         <ul className='inline'>
           <div className='flex items-center gap-1'>
             <div className='w-3 h-3 bg-razzmatazz'></div>

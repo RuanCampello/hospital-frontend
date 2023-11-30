@@ -25,28 +25,28 @@ export default function Sidebar() {
       { view: 'getTeamView', title: 'Visualizar equipes', icon: <Eye size={24} />},
       { view: 'addTeamView', title: 'Adicionar equipe', icon: <PlusCircle size={24} />},
     ]
-   const handleItemClick = (selectedView: string) => {
+   function handleItemClick(selectedView: string) {
       setViewState(selectedView)
     }
   return (
-   <aside className='fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0' aria-label='Sidebar'>
-      <div className='h-full px-3 py-4 overflow-y-auto bg-yankees-blue-primary'>
+   <aside className='fixed top-0 left-0 z-40 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0' aria-label='Sidebar'>
+      <div className='h-full px-5 py-4 overflow-y-auto bg-yankees-blue-primary'>
       <ul className='space-y-2 font-medium'>
       {sidebarItems.map(({ isSeparator, separatorText, view, title, icon }, index) => (
          <Fragment key={index}>
             {isSeparator && (
                <Fragment>
-               <hr className='border-slate-600' />
-               <p className='text-slate-400 text-sm'>{separatorText}</p>
+               {/* <hr className='border-slate-600' /> */}
+               <p className='text-slate-400 text-xs pt-4 uppercase'>{separatorText}</p>
                </Fragment>
             )}
             {!isSeparator && (
                <SidebarItem
-               view={view || ''}
+               // view={view || ''}
                title={title || ''}
                icon={icon || <></>}
                isActive={view === currentView}
-               onClick={() => handleItemClick(view || '')}
+               onClick={()=>handleItemClick(view || '')}
                />
             )}
          </Fragment>

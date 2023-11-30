@@ -26,7 +26,7 @@ export default function ViewTeam() {
     }
   }, 1500)
   return (
-    <main className='h-full w-full xl:px-8 lg:px-6 px-4 text-center'>
+    <main className='h-full w-full xl:px-16 lg:px-6 xl:py-6 px-4 text-center'>
       <div className='mt-3 grid grid-cols-7 bg-yankees-blue-primary rounded-t-xl 2xl:text-lg text-sm items-center py-2 mb-2 font-semibold lg:px-8 px-4'>
         <div>Nome</div>
         <div className='col-span-5'>Funcionários</div>
