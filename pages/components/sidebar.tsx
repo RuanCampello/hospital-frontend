@@ -30,7 +30,7 @@ export default function Sidebar() {
     }
   return (
    <aside className='fixed top-0 left-0 z-40 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0' aria-label='Sidebar'>
-      <div className='h-full px-5 py-4 overflow-y-auto bg-yankees-blue-primary'>
+      <div className='h-full px-3 py-4 overflow-y-auto bg-yankees-blue-primary'>
       <ul className='space-y-2 font-medium'>
       {sidebarItems.map(({ isSeparator, separatorText, view, title, icon }, index) => (
          <Fragment key={index}>
