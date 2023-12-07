@@ -22,7 +22,8 @@
     "react": "latest",
     "react-bootstrap": "^2.9.0",
     "react-dom": "latest",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "socket.io-client": "^4.7.2"
   },
   "devDependencies": {
     "@types/cleave.js": "^1.4.12",

@@ -34,19 +34,8 @@ export default function TeamItem({id, name, funcList}:TeamItemProps) {
   function handlePut() {
     setTeamId(id)
     setTeamName(name)
-    //setTeamFunc(tFunc => [...tFunc])
-    //setTeamFunc(funcList) get it to work!
-    // setTeamFunc((currentState) => [
-    //   ...currentState,
-    //   //newTeam,
-    // ]);
-    // let newTeam = [...tFunc].map((item) => {
-    //   return item
-    // })
-    // setTeamFunc(newTeam)
     setTeamFunc(funcList)
     setViewState('putTeamView')
-    console.log(tFunc);
   }
   function handleDelete() {
     setActionState(true)
