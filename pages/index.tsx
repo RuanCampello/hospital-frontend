@@ -1,19 +1,19 @@
 import { useRecoilState } from "recoil";
 import { viewState } from '@/atoms/viewAtom'
-import AddHospitalView from "./components/views/addHospitalView";
-import ViewHospital from "./components/views/viewHospitals";
-import PutHospitalView from "./components/views/putHospitalView";
+import AddHospitalView from "./components/views/hospital/addHospitalView";
+import ViewHospital from "./components/views/hospital/viewHospitals";
+import PutHospitalView from "./components/views/hospital/putHospitalView";
 import Sidebar from "./components/sidebar";
-import ViewPatient from "./components/views/viewPatient";
-import AddPatientView from "./components/views/addPatientView";
-import PutPatientView from "./components/views/putPatientView";
-import ViewEmployee from "./components/views/viewEmployee";
-import PutEmployeeView from "./components/views/putEmployeeView";
+import ViewPatient from "./components/views/patient/viewPatient";
+import AddPatientView from "./components/views/patient/addPatientView";
+import PutPatientView from "./components/views/patient/putPatientView";
+import ViewEmployee from "./components/views/employee/viewEmployee";
+import PutEmployeeView from "./components/views/employee/putEmployeeView";
+import AddEmployeeView from "./components/views/employee/addEmployeeView";
 import Homepage from "./components/views/homepage";
-import AddEmployeeView from "./components/views/addEmployeeView";
-import ViewTeam from "./components/views/viewTeam";
-import AddTeamView from "./components/views/addTeamView";
-import PutTeamView from "./components/views/putTeamView";
+import ViewTeam from "./components/views/team/viewTeam";
+import AddTeamView from "./components/views/team/addTeamView";
+import PutTeamView from "./components/views/team/putTeamView";
 
 export default function Home() {
   const [currentView, setViewState] = useRecoilState(viewState)

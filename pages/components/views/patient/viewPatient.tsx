@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import PatientItem from "../subitems/patientItem"
+import PatientItem from "../../subitems/patientItem"
 import { actionState } from "@/atoms/actionAtom"
 import { useRecoilState } from "recoil"
 

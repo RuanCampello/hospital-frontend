@@ -1,7 +1,7 @@
 import { actionState } from "@/atoms/actionAtom"
 import { useEffect, useState } from "react"
 import { useRecoilState } from "recoil"
-import TeamItem from "../subitems/teamItem"
+import TeamItem from "../../subitems/teamItem"
 
 export default function ViewTeam() {
   const [teams, setTeams] = useState([])

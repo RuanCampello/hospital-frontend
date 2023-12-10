@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import FormField from '../formField'
+import FormField from '../../formField'
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput'
 import InputLabel from '@mui/material/InputLabel'
@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Chip from '@mui/material/Chip';
 import { CheckCircle, XCircle } from '@phosphor-icons/react';
-import ToastComponent from '../toast';
+import ToastComponent from '../../toast';
 import { Checkbox, ListItemText } from '@mui/material';
 
 export interface Employee {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import FormField from '../formField'
+import FormField from '../../formField'
 import Box from '@mui/material/Box'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import InputLabel from '@mui/material/InputLabel'
@@ -12,7 +12,7 @@ import { teamFunct, teamId, teamName } from '@/atoms/updateTeamAtom'
 import { Checkbox, ListItemText } from '@mui/material'
 import { MenuProps, labelStyle } from './addTeamView'
 import { CheckCircle, XCircle } from '@phosphor-icons/react'
-import ToastComponent from '../toast'
+import ToastComponent from '../../toast'
 
 interface Employee {
   id: string

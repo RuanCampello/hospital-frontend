@@ -1,7 +1,7 @@
 import { useState } from "react";
-import FormField from "../formField"
+import FormField from "../../formField"
 import { CheckCircle, XCircle } from "@phosphor-icons/react";
-import ToastComponent from "../toast";
+import ToastComponent from "../../toast";
 import Cleave from 'cleave.js/react'
 
 export default function AddHospitalView() {

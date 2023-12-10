@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import FormField from '../formField';
-import ToastComponent from '../toast';
+import FormField from '../../formField';
+import ToastComponent from '../../toast';
 import { CheckCircle, XCircle } from '@phosphor-icons/react';
 
 export default function AddEmployeeView () {

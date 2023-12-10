@@ -1,9 +1,9 @@
 import { useState } from "react";
-import FormField from "../formField";
+import FormField from "../../formField";
 import { useRecoilState } from "recoil";
 import { viewState } from "@/atoms/viewAtom";
 import { patientCpf, patientDate, patientId, patientName, patientPersonalNumber, patientResponsibleNumber } from "@/atoms/updatePatientAtom";
-import ToastComponent from "../toast";
+import ToastComponent from "../../toast";
 import { CheckCircle, XCircle } from "@phosphor-icons/react";
 
 export default function PutPatientView() {

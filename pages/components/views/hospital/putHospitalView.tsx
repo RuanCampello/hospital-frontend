@@ -1,9 +1,9 @@
 import { useState } from "react";
-import FormField from "../formField";
+import FormField from "../../formField";
 import { CheckCircle, XCircle } from "@phosphor-icons/react";
 import { hospitalId, hospitalName, hospitalCnpj, hospitalAddress, hospitalNumber } from "@/atoms/updateHospitalAtom";
 import { useRecoilState } from "recoil";
-import ToastComponent from "../toast";
+import ToastComponent from "../../toast";
 
 export default function PutHospitalView() {
   const [id, setId] = useState(null)

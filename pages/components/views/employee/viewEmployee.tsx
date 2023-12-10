@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import EmployeeItem from '../subitems/employeeItem'
+import EmployeeItem from '../../subitems/employeeItem'
 import { useRecoilState } from 'recoil'
 import { actionState } from '@/atoms/actionAtom'
-import { Team } from './addTeamView'
+import { Team } from '../team/addTeamView'
 
 const API_ENDPOINT = 'http://localhost:8080/employee/all'
 const VERIFY_INTERVAL = 1500

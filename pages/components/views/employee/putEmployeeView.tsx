@@ -1,8 +1,8 @@
 import { employeeId, employeeName, employeeCpf, employeeDate, employeeNumber, employeeFunction } from "@/atoms/updateEmployeeAtom"
 import { useRecoilState } from "recoil"
-import FormField from "../formField"
+import FormField from "../../formField"
 import { useState } from "react"
-import ToastComponent from "../toast"
+import ToastComponent from "../../toast"
 import { CheckCircle, XCircle } from "@phosphor-icons/react"
 
 export default function PutEmployeeView() {
