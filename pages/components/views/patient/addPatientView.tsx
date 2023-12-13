@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import FormField from '../../formField'
 import { Alert, AlertTitle, Collapse, IconButton } from '@mui/material'
-import { XCircle } from '@phosphor-icons/react'
+import { CheckCircle, XCircle } from '@phosphor-icons/react'
+import ToastComponent from '../../toast'
 
 export default function AddPatientView() {
   const [name, setName] = useState(null)
@@ -52,20 +53,10 @@ export default function AddPatientView() {
         </div>
         <button className='bg-teal-600 text-md font-semibold px-6 p-3 hover:bg-teal-700 float-right rounded-full' type='submit'>Submit</button>
       </form>
-{data ?
-    <Collapse in={open}>
-    <Alert color={status === 201 ? 'success' : 'error'} severity={status === 201 ? 'success' : 'error'} variant='filled' action={
-      <IconButton aria-label='close' color='inherit' onClick={()=> {setOpen(false)}}>
-        <XCircle className='mb-1' weight='duotone'/>
-      </IconButton>
-    } className={`xl:w-96 float-right mx-16 xl:me-[400px] mt-auto items-center`} > 
-    { status === 201 ? 
-    <span><AlertTitle><b>Success</b></AlertTitle>Paciente registrado!</span> : 
-    status === 500 ? 
-    <span><AlertTitle><b>Error</b></AlertTitle>CPF deve ser único</span> : <span><AlertTitle><b>Error</b></AlertTitle>{dataErrors}</span> }
-    </Alert>
-    </Collapse> : null
-}
+      {data ?
+        <ToastComponent oFunc={open} cFunc={setOpen} icon={status === 201 ? <CheckCircle size={32}/> : <XCircle size={32}/>} title={status === 201 ? 'Success' : 'Error'} disc={status === 201 ? 'Patient Registered!' : status === 500 ? 'CPF must be unique' : String(dataErrors)
+      }/> : null
+      }
     </div>
   )  
 }

@@ -57,7 +57,7 @@ export default function ViewEmployee () {
 
   return (
     <div className='w-full xl:px-16 lg:px-6 px-4 xl:py-6 py-2'>
-      <div className='grid grid-cols-8 p-2 rounded-t-lg font-semibold xl:text-lg text-sm text-center items-center bg-yankees-blue-primary'>
+      <div className='grid grid-cols-8 p-2 rounded-t-lg font-semibold xl:text-lg text-sm text-center items-center bg-yankees-blue-primary mt-2'>
         <div className='col-span-2 text-left gap-2 flex'>
           <span>#</span>
           <span>Nome</span>

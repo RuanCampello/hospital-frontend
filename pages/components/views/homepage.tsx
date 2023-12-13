@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import ToastComponent from '../toast';
-import HealthRecordItem from '../subitems/healthRecordItem';
+import { useEffect, useRef, useState } from 'react'
+import HealthRecordItem from '../subitems/healthRecordItem'
 interface Patient {
   id: string
   cpf: string
@@ -46,12 +45,15 @@ export default function Homepage() {
   useInterval(() => {
     getTracks()
   }, 5000)
+  useEffect(() => {
+    getTracks()
+  },[])
   return (
     <div className='w-full xl:px-16 lg:px-6 px-4 xl:py-6 py-2'>
       <div className='grid grid-cols-7 p-2 rounded-t-lg font-semibold 2xl:text-lg text-xs text-center items-center bg-yankees-blue-primary'>
-        <div>Paciente</div>
-        <div>Freq Cardíaca</div>
+        <div className='text-start'>Paciente</div>
         <div>Pre Sanguínea</div>
+        <div>Freq Cardíaca</div>
         <div>Freq Respiratória</div>
         <div>Temperatura</div>
         <div>Oxigênio no sangue</div>

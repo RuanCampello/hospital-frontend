@@ -15,9 +15,9 @@ export default function HealthRecordItem({heart_rate, blood_oxygen_concentration
   }
   return (
     <div className='grid grid-cols-7 text-xs 2xl:text-lg p-2 items-center text-center bg-police-blue-primary'>
-      <span>{paciente.name}</span>
-      <span>{heart_rate}</span>
+      <span className='text-start'>{paciente.name}</span>
       <span>{blood_pressure}</span>
+      <span>{heart_rate}</span>
       <span>{respiratory_frequency}</span>
       <span>{temperature}</span>
       <span>{blood_oxygen_concentration}</span>
